@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Home from '../src/pages/home/home';
+import Search from '../src/pages/search/search';
 
 export default function TabsNavigation() {
 
@@ -32,8 +33,8 @@ export default function TabsNavigation() {
         })}
         >
           <Tab.Screen name="Home" component={Home} options={ {headerShown: false}}  />
-          <Tab.Screen name="Buscar" component={Home} />
-          <Tab.Screen name="Perfil" component={Home} />
+          <Tab.Screen name="Perfil" component={Home} options={ {headerShown: false}}  />
+          <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}  />
         </Tab.Navigator>
       </NavigationContainer>
     );
