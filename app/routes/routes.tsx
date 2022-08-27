@@ -23,18 +23,22 @@ export default function TabsNavigation() {
               iconName = focused ? 'ios-search' : 'ios-search-outline';
             } else if(route.name=='Perfil'){
               iconName = focused ? 'ios-person' : 'ios-person-outline';
+            } else if(route.name=='Menu'){
+                iconName = focused? 'ios-menu' : 'ios-menu-outline'
             }
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} style={{ paddingBottom: 5 }} />;
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'tomato',
+          tabBarActiveTintColor: 'black',
+          tabBarInactiveTintColor: 'black',
+
         })}
         >
           <Tab.Screen name="Home" component={Home} options={ {headerShown: false}}  />
           <Tab.Screen name="Perfil" component={Home} options={ {headerShown: false}}  />
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}  />
+          <Tab.Screen name="Menu" component={Search} options={ {headerShown: false}}  />
         </Tab.Navigator>
       </NavigationContainer>
     );
