@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { VStack, NativeBaseProvider,Icon, Box, Divider,Input,
-Heading, Stack, Center, Button, Actionsheet, useDisclose }
+Heading, Stack, Center, Button, Actionsheet,Skeleton, HStack, useDisclose }
 from 'native-base';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -11,10 +11,11 @@ import { Platform } from 'react-native';
 
 
 export default function Search(){
- const { isOpen, onOpen, onClose } = useDisclose();
+const { isOpen, onOpen, onClose } = useDisclose();
+let valor:boolean = true;
 return (
         <NativeBaseProvider>
-                          <VStack w="100%" space={5} alignSelf="center" mt={10}>
+                        <VStack w="100%" space={5} alignSelf="center" mt={10}>
 
                                 <Box mx={5}>
                                     <Heading color="primary.900" fontSize={18} fontFamily='Roboto'>Buscar imóveis</Heading>
@@ -31,9 +32,25 @@ return (
                                         </Box>
                                     </Stack>
 
-                                    <Center w="64" h="20" bg="indigo.300" rounded="md" shadow={3} mb={2} />
-                                    <Center w="64" h="20" bg="indigo.500" rounded="md" shadow={3} mb={2}  />
-                                    <Center w="64" h="20" bg="indigo.700" rounded="md" shadow={3} mb={2}  />
+
+
+                                    <HStack w="90%" maxW="400" borderWidth="1" space={8} rounded="md" _dark={{
+                                        borderColor: "coolGray.500"
+                                        }} _light={{
+                                        borderColor: "coolGray.200"
+                                        }} p="4">
+                                                <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
+                                                <VStack flex="3" space="4">
+                                                <Skeleton startColor="amber.300" />
+                                                <Skeleton.Text />
+                                                <HStack space="2" alignItems="center">
+                                                <Skeleton size="5" rounded="full" />
+                                                <Skeleton h="3" flex="2" rounded="full" />
+                                                <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
+                                                </HStack>
+                                                </VStack>
+                                    </HStack>
+
                                 </Box>
                          </VStack>
 
