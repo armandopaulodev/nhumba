@@ -34,22 +34,6 @@ export default function Home() {
   const toast = useToast();
   return (
     <NativeBaseProvider>
-           <StatusBar bg="#f472b6"  barStyle="light-content" />
-           <Box safeAreaTop bg="pink.400" />
-            <HStack bg="pink.400" px="1" py="3" justifyContent="space-between" alignItems="center" w="100%" maxW="full">
-              <HStack alignItems="center">
-                <IconButton icon={<Icon size="sm" as={MaterialIcons} name="menu" color="white" />} />
-                <Text color="white" fontSize="20" fontWeight="bold">
-                  Nhumba
-                </Text>
-              </HStack>
-                <HStack>
-                <IconButton icon={<Icon as={MaterialIcons} name="favorite" size="sm" color="white" />} />
-                <IconButton icon={<Icon as={MaterialIcons} name="search" size="sm" color="white" />} />
-                <IconButton icon={<Icon as={MaterialIcons} name="more-vert" size="sm" color="white" />} />
-                </HStack>
-            </HStack>
-
           <ScrollView mt={2}>
 
              <Box alignItems="center" mb={2}>
