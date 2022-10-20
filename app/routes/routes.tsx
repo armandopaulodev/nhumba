@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Home from '../src/pages/home/home';
 import Search from '../src/pages/search/search';
+import Perfil from '../src/pages/perfil/perfil';
 
 export default function TabsNavigation() {
 
@@ -28,7 +29,7 @@ export default function TabsNavigation() {
             }
 
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} style={{ paddingBottom: 5 }} />;
+            return <Ionicons name={iconName} size={size} color={color} style={{ paddingBottom: 5, paddingTop: 6 }} />;
           },
           tabBarActiveTintColor: 'black',
           tabBarInactiveTintColor: 'black',
@@ -36,7 +37,7 @@ export default function TabsNavigation() {
         })}
         >
           <Tab.Screen name="Home" component={Home} options={ {headerShown: true}}  />
-          <Tab.Screen name="Perfil" component={Home} options={ {headerShown: true}}  />
+          <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: true}}  />
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}  />
           <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}  />
         </Tab.Navigator>
