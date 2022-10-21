@@ -11,11 +11,11 @@ import {
   NativeBaseProvider,StatusBar,Icon,
   extendTheme,
   Stack,AspectRatio, ScrollView,IconButton, useToast,
-  Box, Image, Toast
+  Box, Image, Toast, FlatList, 
 } from "native-base";
 
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { Alert, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from 'react-native';
 
 // Define the config
 const config = {
@@ -29,191 +29,114 @@ type MyThemeType = typeof theme;
 declare module "native-base" {
   interface ICustomTheme extends MyThemeType {}
 }
-export default function Home() {
+export default function Home({navigation}) {
 
-  const toast = useToast();
+  const imoveis = [{
+    'id': 1,
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613232056.jpg",
+    'capital': 'Beira',
+    'province':  "Sofala",
+    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+  },
+  {
+    'id': 2,
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/00998352Fatehpur_Sikri_Main_20171124223815.jpg",
+    'capital': 'Maputo',
+    'province':  "Maputo",
+    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+  },
+  {
+    'id': 3,
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/01-Taramati-Baradari_20180329120448.jpg",
+    'capital': 'Nampula',
+    'province':  "Nampula",
+    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+  }];
   return (
     <NativeBaseProvider>
-          <ScrollView mt={2}>
 
-             <Box alignItems="center" mb={2}>
-              <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700"
-                }} _web={{
-                  shadow: 2,
-                  borderWidth: 0
-                }} _light={{
-                  backgroundColor: "gray.50"
-                }}>
-                <Box>
-                  <TouchableOpacity  onPress={()=>{Alert.alert('Beira', 'Segunda cidade')}}>
-                      <AspectRatio w="100%" ratio={16 / 9}>
-                        <Image source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg"
-                      }} alt="image" />
-                      </AspectRatio>
-                      <Center bg="violet.500" _dark={{
-                      bg: "violet.400"
-                    }} _text={{
-                      color: "warmGray.50",
-                      fontWeight: "700",
-                      fontSize: "xs"
-                    }} position="absolute" bottom="0" px="3" py="1.5">
-                        PHOTOS 2
-                      </Center>
-                  </TouchableOpacity>
-                </Box>
-                <Stack p="4" space={3}>
-                  <Stack space={2}>
-                    <Heading size="md" ml="-1">
-                    Beira
-                    </Heading>
-                    <Text fontSize="xs" _light={{
-                    color: "violet.500"
-                  }} _dark={{
-                    color: "violet.400"
-                  }} fontWeight="500" ml="-0.5" mt="-1">
-                      The Silicon Valley of India.
-                    </Text>
-                  </Stack>
-                  <Text fontWeight="400">
-                    Bengaluru (also called Bangalore) is the center of India's high-tech
-                    industry. The city is also known for its parks and nightlife.
-                  </Text>
-                  <HStack alignItems="center" space={4} justifyContent="space-between">
-                    <HStack alignItems="center">
-                      <Text color="coolGray.600" _dark={{
-                      color: "warmGray.200"
-                    }} fontWeight="400">
-                        6 mins ago
-                      </Text>
-                      <Icon as={Ionicons} name="star" color="amber.400" ml={1}></Icon>  
-                      <Icon as={Ionicons} name="star" color="amber.400" ml={1}></Icon>
-                      <Icon as={Ionicons} name="star" color="amber.400" ml={1}></Icon>  
-                      <Icon as={Ionicons} name="star" color="amber.400" ml={1}></Icon>
-                    </HStack>
-                  </HStack>
-                </Stack>
-              </Box>
-            </Box>
-
-            <Box alignItems="center" mb={2}>
-                <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-                    borderColor: "coolGray.600",
-                    backgroundColor: "gray.700"
-                  }} _web={{
-                    shadow: 2,
-                    borderWidth: 0
-                  }} _light={{
-                    backgroundColor: "gray.50"
-                  }}>
-                  <Box>
-                      <TouchableOpacity onPress={()=>{Alert.alert('Maputo', 'Primeira cidade')}}>
-
-                            <AspectRatio w="100%" ratio={16 / 9}>
-                            <Image source={{
-                            uri: "https://www.holidify.com/images/cmsuploads/compressed/00998352Fatehpur_Sikri_Main_20171124223815.jpg"
-                          }} alt="image" />
-                          </AspectRatio>
-                          <Center bg="violet.500" _dark={{
-                          bg: "violet.400"
-                        }} _text={{
-                          color: "warmGray.50",
-                          fontWeight: "700",
-                          fontSize: "xs"
-                        }} position="absolute" bottom="0" px="3" py="1.5">
-                            PHOTOS 1
-                          </Center>
-                      </TouchableOpacity>
-                  </Box>
-                  <Stack p="4" space={3}>
-                    <Stack space={2}>
-                      <Heading size="md" ml="-1">
-                      Maputo
-                      </Heading>
-                      <Text fontSize="xs" _light={{
-                      color: "violet.500"
-                    }} _dark={{
-                      color: "violet.400"
-                    }} fontWeight="500" ml="-0.5" mt="-1">
-                        The Silicon Valley of India.
-                      </Text>
-                    </Stack>
-                    <Text fontWeight="400">
-                      Bengaluru (also called Bangalore) is the center of India's high-tech
-                      industry. The city is also known for its parks and nightlife.
-                    </Text>
-                    <HStack alignItems="center" space={4} justifyContent="space-between">
-                      <HStack alignItems="center">
-                        <Text color="coolGray.600" _dark={{
-                        color: "warmGray.200"
-                      }} fontWeight="400">
-                          6 mins ago
-                        </Text>
-                      </HStack>
-                    </HStack>
-                  </Stack>
-                </Box>
-            </Box>
-
-            <Box alignItems="center" mb={2}>
-              <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-                  borderColor: "coolGray.600",
-                  backgroundColor: "gray.700"
-                }} _web={{
-                  shadow: 2,
-                  borderWidth: 0
-                }} _light={{
-                  backgroundColor: "gray.50"
-                }}>
-                <Box>
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                    uri: "https://www.holidify.com/images/cmsuploads/compressed/01-Taramati-Baradari_20180329140448.jpg"
-                  }} alt="image" />
-                  </AspectRatio>
-                  <Center bg="violet.500" _dark={{
-                  bg: "violet.400"
-                }} _text={{
-                  color: "warmGray.50",
-                  fontWeight: "700",
-                  fontSize: "xs"
-                }} position="absolute" bottom="0" px="3" py="1.5">
-                    PHOTOS 3
-                  </Center>
-                </Box>
-                <Stack p="4" space={3}>
-                  <Stack space={2}>
-                    <Heading size="md" ml="-1">
-                    Nampula
-                    </Heading>
-                    <Text fontSize="xs" _light={{
-                    color: "violet.500"
-                  }} _dark={{
-                    color: "violet.400"
-                  }} fontWeight="500" ml="-0.5" mt="-1">
-                      The Silicon Valley of India.
-                    </Text>
-                  </Stack>
-                  <Text fontWeight="400">
-                    Bengaluru (also called Bangalore) is the center of India's high-tech
-                    industry. The city is also known for its parks and nightlife.
-                  </Text>
-                  <HStack alignItems="center" space={4} justifyContent="space-between">
-                    <HStack alignItems="center">
-                      <Text color="coolGray.600" _dark={{
-                      color: "warmGray.200"
-                    }} fontWeight="400">
-                        6 mins ago
-                      </Text>
-                    </HStack>
-                  </HStack>
-                </Stack>
-              </Box>
-            </Box>
             
-          </ScrollView>      
+             <ScrollView mt={2}>
+
+                 <Heading size="md" mb={1} ml={1}>Categorias</Heading>
+                  <HStack space={3} mb={2} justifyContent="center">
+                    <ScrollView horizontal={true}>
+                        <Center h="20" w="20" bg="primary.300" rounded="md" shadow={3} ml={1} mr={1}/>
+                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1} />
+                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
+                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
+                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
+                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
+                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
+                    </ScrollView>
+                  </HStack>
+                  <FlatList data={imoveis} scrollEnabled={false} 
+                    renderItem={({item})=>
+                    <Box alignItems="center" mb={2}>
+                              <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
+                            borderColor: "coolGray.600",
+                            backgroundColor: "gray.700"
+                          }} _web={{
+                            shadow: 2,
+                            borderWidth: 0
+                          }} _light={{
+                            backgroundColor: "gray.50"
+                          }}>
+                          <Box>
+                            <TouchableOpacity  onPress={() => {navigation.navigate('Buscar', item)}}>
+                                <AspectRatio w="100%" ratio={16 / 9}>
+                                  <Image source={{
+                                  uri: item.uri
+                                }} alt="image" />
+                                </AspectRatio>
+                                <Center bg="violet.500" _dark={{
+                                bg: "violet.200"
+                              }} _text={{
+                                color: "warmGray.50",
+                                fontWeight: "700",
+                                fontSize: "xs"
+                              }} position="absolute" bottom="0" px="3" py="1.5">
+                                  {item.capital}
+                                </Center>
+                            </TouchableOpacity>
+                          </Box>
+                          <Stack p="4" space={3}>
+                            <Stack space={2}>
+                              <Heading size="md" ml="-1">
+                              {item.province}
+                              </Heading>
+                              <Text fontSize="xs" _light={{
+                              color: "violet.500"
+                            }} _dark={{
+                              color: "violet.200"
+                            }} fontWeight="500" ml="-0.5" mt="-1">
+                                The Silicon Valley of India.
+                              </Text>
+                            </Stack>
+                            <Text fontWeight="200">
+                            {item.description}
+                            </Text>
+                            <HStack alignItems="center" space={4} justifyContent="space-between">
+                              <HStack alignItems="center">
+                                <Text color="coolGray.600" _dark={{
+                                color: "warmGray.200"
+                              }} fontWeight="200">
+                                  9 mins ago
+                                </Text>
+                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>  
+                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>
+                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>  
+                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>
+                              </HStack>
+                            </HStack>
+                          </Stack>
+                        </Box>
+                    </Box>  
+                  }
+                  />
+
+             </ScrollView>
+         
     </NativeBaseProvider>
   );
 }
@@ -223,7 +146,7 @@ function ToggleDarkMode() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <HStack space={2} alignItems="center">
-      <Text>Dark</Text>
+      <Text>Dark Mode</Text>
       <Switch
         isChecked={colorMode === "light"}
         onToggle={toggleColorMode}
@@ -231,7 +154,7 @@ function ToggleDarkMode() {
           colorMode === "light" ? "switch to dark mode" : "switch to light mode"
         }
       />
-      <Text>Light</Text>
+      <Text>Light Mode</Text>
     </HStack>
   );
 }

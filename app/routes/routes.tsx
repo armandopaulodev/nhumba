@@ -36,10 +36,10 @@ export default function TabsNavigation() {
 
         })}
         >
-          <Tab.Screen name="Home" component={Home} options={ {headerShown: true}}  />
-          <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: true}}  />
-          <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}  />
-          <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}  />
+          <Tab.Screen name="Home" component={Home} options={ {headerShown: true}}/>
+          <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: false}}/>
+          <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}/>
+          <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}/>
         </Tab.Navigator>
       </NavigationContainer>
     );

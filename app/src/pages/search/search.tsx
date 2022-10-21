@@ -12,7 +12,10 @@ import { Platform } from 'react-native';
 
 
 
-export default function Search(){
+export default function Search({ route, navigation }){
+
+const {id,capital}=route.params;
+
 const { isOpen, onOpen, onClose } = useDisclose();
 let valor:boolean = true;
 
@@ -50,6 +53,8 @@ return (
 
 
                         <ScrollView>
+                        <Center>{id}</Center>
+                        <Center>{capital}</Center>
                                 <Box ml={2} mr={2}>
 
                                             <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{
@@ -86,7 +91,7 @@ return (
                                                         </VStack>
                                             </HStack>
 
-                                            <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{
+                                            <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md"  _dark={{
                                                 borderColor: "coolGray.500"
                                                 }} _light={{
                                                 borderColor: "coolGray.200"
@@ -124,6 +129,9 @@ return (
 
                                       
                                 </Box>
+
+                             
+
                         </ScrollView>
 
         </NativeBaseProvider>

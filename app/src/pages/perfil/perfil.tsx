@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider } from "native-base";
-import { Alert } from 'react-native';
+import { Alert, ImageBackground  } from 'react-native';
 
 
 export default function Perfil(){
@@ -8,55 +8,63 @@ export default function Perfil(){
 
 return (
         <NativeBaseProvider>
-                         <Center w="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
-        <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
-        color: "warmGray.50"
-      }}>
-          Welcome
-        </Heading>
-        <Heading mt="1" _dark={{
-        color: "warmGray.200"
-      }} color="coolGray.600" fontWeight="medium" size="xs">
-          Sign in to continue!
-        </Heading>
+          
+            <Center w="100%">
+                <Box safeArea p="2" py="8" w="90%" maxW="290">
 
-        <VStack space={3} mt="5">
-          <FormControl>
-            <FormControl.Label>Email ID</FormControl.Label>
-            <Input />
-          </FormControl>
-          <FormControl> 
-            <FormControl.Label>Password</FormControl.Label>
-            <Input type="password" />
-            <Link _text={{
-            fontSize: "xs",
-            fontWeight: "500",
-            color: "indigo.500"
-          }} alignSelf="flex-end" mt="1">
-              Forget Password?
-            </Link>
-          </FormControl>
-          <Button mt="2" colorScheme="indigo" onPress={()=>{Alert.alert('Atencao', 'Funcao Desactivada')}}>
-            Sign in
-          </Button>
-          <HStack mt="6" justifyContent="center">
-            <Text fontSize="sm" color="coolGray.600" _dark={{
-            color: "warmGray.200"
-          }}>
-              I'm a new user.{" "}
-            </Text>
-            <Link _text={{
-            color: "indigo.500",
-            fontWeight: "medium",
-            fontSize: "sm"
-          }} href="https://www.netware.co.mz">
-              Sign Up
-            </Link>
-          </HStack>
-        </VStack>
-      </Box>
-    </Center>
+                  <Box alignItems="center">
+
+                        <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
+                        color: "warmGray.50"
+                        }}>
+
+                        NHUMBA
+
+                        </Heading>
+
+                        <Heading mt="1" _dark={{
+                        color: "warmGray.200"
+                      }} color="coolGray.600" fontWeight="medium" size="xs">
+                          Bem vindo, faca login pra continuar!
+                        </Heading>
+                  </Box>
+
+                  <VStack space={3} mt="5">
+                    <FormControl>
+                      <FormControl.Label>Email ID</FormControl.Label>
+                      <Input />
+                    </FormControl>
+                    <FormControl> 
+                      <FormControl.Label>Password</FormControl.Label>
+                      <Input type="password" />
+                      <Link _text={{
+                      fontSize: "xs",
+                      fontWeight: "500",
+                      color: "amber.500"
+                    }} alignSelf="flex-end" mt="1">
+                        Esqueceu a senha?
+                      </Link>
+                    </FormControl>
+                    <Button mt="2" colorScheme="amber" onPress={()=>{Alert.alert('Atencao', 'Funcao Desactivada')}}>
+                      Entrar
+                    </Button>
+                    <HStack mt="6" justifyContent="center">
+                      <Text fontSize="sm" color="amber.600" _dark={{
+                      color: "warmGray.200"
+                    }}>
+                        Nao tem conta?.{" "}
+                      </Text>
+                      <Link _text={{
+                      color: "indigo.500",
+                      fontWeight: "medium",
+                      fontSize: "sm"
+                    }} href="https://www.netware.co.mz">
+                        Criar uma
+                      </Link>
+                    </HStack>
+                  </VStack>
+                </Box>
+            </Center>
 
         </NativeBaseProvider>
 );
