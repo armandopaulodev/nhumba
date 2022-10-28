@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
     <NavigationContainer>
              <Stack.Navigator>
              <Stack.Screen name="inicio" component={TabsNavigation} options={ {headerShown: false}}/>
-              <Stack.Screen name="Details" component={Details} />
+              <Stack.Screen name="Details" component={Details} options={ {headerShown: false}} />
             </Stack.Navigator>
     </NavigationContainer>
   );
