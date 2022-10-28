@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import {  View, Animated, Dimensions, StyleSheet } from 'react-native';
-import {NativeBaseProvider,FlatList, Image, Text, Heading, Box} from "native-base";
+import {NativeBaseProvider,FlatList, Image, Text, Heading, Box, Icon} from "native-base";
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
+import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
 
 
 const {width, height} = Dimensions.get('screen');
@@ -10,7 +11,7 @@ const ITEM_WIDTH = width;
 const ITEM_HEIGHT = height * .75;
 
 
-export default function Details({ route } : {route: any}) {
+export default function Details({navigation, route}) {
 
     const [imagens, setimagens] = useState([]);
     //getting route params
@@ -45,6 +46,9 @@ export default function Details({ route } : {route: any}) {
                                         renderItem={({item})=>
                                             <View>
                                                 <Image source={{ uri: item }} style={styles.imagens}/>
+                                                <Icon as={Ionicons} name="close" color="amber.200" 
+                                                size={30} style={{ position: 'absolute', top: 35, right: 25 }}
+                                                onPress={()=>navigation.goBack()}></Icon>
                                             </View>
                                         }
                                 />
