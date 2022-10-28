@@ -16,6 +16,7 @@ import {
 
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
+import LocalDataBase from "../../../database/localDatabase";
 
 // Define the config
 const config = {
@@ -31,41 +32,8 @@ declare module "native-base" {
 }
 export default function Home({navigation}: {navigation: any}) {
 
-  const imoveis = [{
-    'id': 1,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/00998352Fatehpur_Sikri_Main_20171124223815.jpg",
-    'capital': 'Beira',
-    'province':  "Sofala",
-    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
-  },
-  {
-    'id': 2,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/00998352Fatehpur_Sikri_Main_20171124223815.jpg",
-    'capital': 'Maputo',
-    'province':  "Maputo",
-    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
-  },
-  {
-    'id': 3,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
-    'capital': 'Nampula',
-    'province':  "Nampula",
-    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
-  },
-  {
-    'id': 4,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
-    'capital': 'Nampula 2',
-    'province':  "Nampula 2",
-    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
-  },
-  {
-    'id': 5,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
-    'capital': 'Manica',
-    'province':  "Manica",
-    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
-  }];
+  const imoveis = LocalDataBase();
+  
   return (
     <NativeBaseProvider>
 
