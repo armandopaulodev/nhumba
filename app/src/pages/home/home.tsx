@@ -15,7 +15,7 @@ import {
 } from "native-base";
 
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { Alert, TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 // Define the config
 const config = {
@@ -29,11 +29,11 @@ type MyThemeType = typeof theme;
 declare module "native-base" {
   interface ICustomTheme extends MyThemeType {}
 }
-export default function Home({navigation}) {
+export default function Home({navigation}: {navigation: any}) {
 
   const imoveis = [{
     'id': 1,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613232056.jpg",
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/00998352Fatehpur_Sikri_Main_20171124223815.jpg",
     'capital': 'Beira',
     'province':  "Sofala",
     'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
@@ -47,9 +47,23 @@ export default function Home({navigation}) {
   },
   {
     'id': 3,
-    'uri': "https://www.holidify.com/images/cmsuploads/compressed/01-Taramati-Baradari_20180329120448.jpg",
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
     'capital': 'Nampula',
     'province':  "Nampula",
+    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+  },
+  {
+    'id': 4,
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
+    'capital': 'Nampula 2',
+    'province':  "Nampula 2",
+    'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+  },
+  {
+    'id': 5,
+    'uri': "https://www.holidify.com/images/cmsuploads/compressed/2_20190701143228.jpg",
+    'capital': 'Manica',
+    'province':  "Manica",
     'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
   }];
   return (
@@ -57,6 +71,11 @@ export default function Home({navigation}) {
 
             
              <ScrollView mt={2}>
+
+
+
+                  <ActivityIndicator color="blue" size="large"></ActivityIndicator>
+                
 
                  <Heading size="md" mb={1} ml={1}>Categorias</Heading>
                   <HStack space={3} mb={2} justifyContent="center">
@@ -70,7 +89,7 @@ export default function Home({navigation}) {
                         <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
                     </ScrollView>
                   </HStack>
-                  <FlatList data={imoveis} scrollEnabled={false} 
+                  <FlatList data={imoveis} 
                     renderItem={({item})=>
                     <Box alignItems="center" mb={2}>
                               <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
@@ -83,7 +102,7 @@ export default function Home({navigation}) {
                             backgroundColor: "gray.50"
                           }}>
                           <Box>
-                            <TouchableOpacity  onPress={() => {navigation.navigate('Buscar', item)}}>
+                            <TouchableOpacity  onPress={() => {navigation.navigate('Details', item)}}>
                                 <AspectRatio w="100%" ratio={16 / 9}>
                                   <Image source={{
                                   uri: item.uri

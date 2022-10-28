@@ -1,12 +1,26 @@
 import * as React from "react";
 import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, Center, NativeBaseProvider } from "native-base";
 import { Alert, ImageBackground  } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+export interface login {
+     name: String,
+     password: String
+}
 
 export default function Perfil(){
 
 
+const storeData = async (value:login) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value)
+    } catch (e) {
+      // saving error
+    }
+  }
+
 return (
+
         <NativeBaseProvider>
           
             <Center w="100%">
@@ -45,7 +59,7 @@ return (
                         Esqueceu a senha?
                       </Link>
                     </FormControl>
-                    <Button mt="2" colorScheme="amber" onPress={()=>{Alert.alert('Atencao', 'Funcao Desactivada')}}>
+                    <Button mt="2" colorScheme="amber" onPress={()=>{Alert.alert('Atencao', 'Funcao Desactivada! Aguarde')}}>
                       Entrar
                     </Button>
                     <HStack mt="6" justifyContent="center">
@@ -68,5 +82,7 @@ return (
 
         </NativeBaseProvider>
 );
+
+
 
 }

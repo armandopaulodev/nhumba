@@ -8,13 +8,13 @@ from 'native-base';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Alert } from 'react-native';
-import { Platform } from 'react-native';
+import { Platform, ActivityIndicator } from 'react-native';
 
 
 
-export default function Search({ route, navigation }){
+export default function Search(){
 
-const {id,capital}=route.params;
+
 
 const { isOpen, onOpen, onClose } = useDisclose();
 let valor:boolean = true;
@@ -29,7 +29,7 @@ return (
 
                                     <Stack direction="row" mb="2.5" mt="1.5" space={3} maxW="full">
                                         <Box width={330}>
-                                              <Input mt={3} placeholder="Buscar imóveis" variant="filled" width="100%" borderRadius="10" py="1" px="2" borderWidth="2" borderColor="blue.100"
+                                              <Input mt={3} placeholder="Buscar imóveis" variant="filled"  width="100%" borderRadius="10" py="1" px="2" borderWidth="2" borderColor="blue.100"
                                               InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
                                         </Box>
                                         <Box>
@@ -53,8 +53,6 @@ return (
 
 
                         <ScrollView>
-                        <Center>{id}</Center>
-                        <Center>{capital}</Center>
                                 <Box ml={2} mr={2}>
 
                                             <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{

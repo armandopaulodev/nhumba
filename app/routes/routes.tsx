@@ -5,12 +5,29 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from '../src/pages/home/home';
 import Search from '../src/pages/search/search';
 import Perfil from '../src/pages/perfil/perfil';
+import { createStackNavigator } from '@react-navigation/stack';
+import Details from '../src/pages/details/details';
 
-export default function TabsNavigation() {
+
+
+
+export default function MyStack() {
+  
+const Stack = createStackNavigator();
+  return (
+    <NavigationContainer>
+             <Stack.Navigator>
+             <Stack.Screen name="inicio" component={TabsNavigation} options={ {headerShown: false}}/>
+              <Stack.Screen name="Details" component={Details} />
+            </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+ function TabsNavigation() {
 
     const Tab = createBottomTabNavigator();
     return (
-      <NavigationContainer>
         <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -41,6 +58,6 @@ export default function TabsNavigation() {
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}/>
           <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}/>
         </Tab.Navigator>
-      </NavigationContainer>
+ 
     );
   }

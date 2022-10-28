@@ -9,10 +9,10 @@ import {
 
   import { NativeBaseProvider } from 'native-base';
 
-export default function Details({ route, navigation }){
+export default function Details({ route } : {route: any}){
 
 
-    const {item}=route.params;
+    const {id, capital, province, uri}=route.params;
 
 
 return (
@@ -20,15 +20,16 @@ return (
     <NativeBaseProvider>
 
           
-<ScrollView>
+            <ScrollView>
 
-<View>
-     <Text>{item.id}</Text>
-</View>
+                <View>
+                    <Text>{id}</Text>
+                    <Text>{capital}</Text>
+                </View>
 
 
 
-</ScrollView>  
+            </ScrollView>  
    
 
     </NativeBaseProvider>
