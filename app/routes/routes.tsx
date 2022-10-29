@@ -53,7 +53,16 @@ const Stack = createStackNavigator();
 
         })}
         >
-          <Tab.Screen name="Home" component={Home} options={ {headerShown: true}}/>
+          <Tab.Screen name="Home" component={Home} options={ {headerShown: true, title: 'Nhumba', 
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: '#fb923c',
+            shadowOpacity: 0.4
+          },
+       
+          
+          
+          }}/>
           <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: false}}/>
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}/>
           <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}/>

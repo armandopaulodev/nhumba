@@ -10,8 +10,8 @@ import {
   useColorMode,
   NativeBaseProvider,StatusBar,Icon,
   extendTheme,
-  Stack,AspectRatio, ScrollView,IconButton, useToast,
-  Box, Image, Toast, FlatList, 
+  Stack,AspectRatio, ScrollView,IconButton, useToast, Pressable,
+  Box, Image, Toast, FlatList, Spacer, 
 } from "native-base";
 
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
@@ -34,20 +34,17 @@ export default function Home({navigation}: {navigation: any}) {
 
   const imoveis = LocalDataBase();
   
+  
   return (
     <NativeBaseProvider>
 
             
              <ScrollView mt={2}>
 
-
-
-                  <ActivityIndicator color="blue" size="large"></ActivityIndicator>
+                    <ActivityIndicator color="blue" size="large" animating={true}></ActivityIndicator>
                 
-
-                 <Heading size="md" mb={1} ml={1}>Categorias</Heading>
-                  <HStack space={3} mb={2} justifyContent="center">
-                    <ScrollView horizontal={true}>
+                    <Heading size="md" mb={1} ml={1}>Categorias</Heading>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} mb={2}>
                         <Center h="20" w="20" bg="primary.300" rounded="md" shadow={3} ml={1} mr={1}/>
                         <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1} />
                         <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
@@ -56,7 +53,7 @@ export default function Home({navigation}: {navigation: any}) {
                         <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
                         <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
                     </ScrollView>
-                  </HStack>
+              
                   <FlatList data={imoveis} 
                     renderItem={({item})=>
                     <Box alignItems="center" mb={2}>
@@ -76,14 +73,14 @@ export default function Home({navigation}: {navigation: any}) {
                                   uri: item.uri
                                 }} alt="image" />
                                 </AspectRatio>
-                                <Center bg="violet.500" _dark={{
-                                bg: "violet.200"
+                                <Center bg="warning.400" _dark={{
+                                bg: "warning.400"
                               }} _text={{
                                 color: "warmGray.50",
                                 fontWeight: "700",
                                 fontSize: "xs"
                               }} position="absolute" bottom="0" px="3" py="1.5">
-                                  {item.capital}
+                                  {item.city}
                                 </Center>
                             </TouchableOpacity>
                           </Box>
@@ -97,7 +94,7 @@ export default function Home({navigation}: {navigation: any}) {
                             }} _dark={{
                               color: "violet.200"
                             }} fontWeight="500" ml="-0.5" mt="-1">
-                                The Silicon Valley of India.
+                                {item.wood}
                               </Text>
                             </Stack>
                             <Text fontWeight="200">
@@ -106,14 +103,15 @@ export default function Home({navigation}: {navigation: any}) {
                             <HStack alignItems="center" space={4} justifyContent="space-between">
                               <HStack alignItems="center">
                                 <Text color="coolGray.600" _dark={{
-                                color: "warmGray.200"
+                                color: "warning.400"
                               }} fontWeight="200">
-                                  9 mins ago
+                                  Tipo <Spacer/>
+                                  {item.type}
                                 </Text>
-                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>  
-                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>
-                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>  
-                                <Icon as={Ionicons} name="star" color="amber.200" ml={1}></Icon>
+                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
+                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
+                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
+                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
                               </HStack>
                             </HStack>
                           </Stack>

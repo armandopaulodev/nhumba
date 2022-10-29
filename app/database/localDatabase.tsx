@@ -5,7 +5,8 @@ import React from "react";
 export default function LocalDataBase(){
 
 
-    const imoveis = [{
+    const imoveis = [
+      {
         'id': 1,
         'uri': "https://www.holidify.com/images/cmsuploads/compressed/1024px-Parramatta-NSW-GovernmentHouse_20190618193446.jpg",
          'imgs' : [
@@ -13,9 +14,26 @@ export default function LocalDataBase(){
                     'https://www.holidify.com/images/cmsuploads/compressed/1024px-PoeHouse-Baltimore_20190729140053.jpg',
                     'https://www.holidify.com/images/cmsuploads/compressed/1024px-Raffles27_House_20190729154534.jpg'
                 ],
-        'capital': 'Beira',
+                'corrector' : 
+                {
+                    'nome': 'Gomes ferreira',
+                    'telefone': 8460096069,
+                    'email': 'corrector1@mail.com',
+                }
+              ,
+              'adress': '24 de Julho',
+              'wood': 'Esturro',
+              'city': 'Beira',
+              'type' : 'Flat/Moderno',
+              'condition': 'Precisando de pitura apenas e alguns retoques interior',
+              'rooms': 5,
+              'badrooms': 4,
+              'utility': 'Venda',
+              'price': 200000,
+              'currence': 'Mzn',
+              'rate': 4,
         'province':  "Sofala",
-        'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+        'description': "Bem proximo a cidade, menos deslocamento para si"
       },
       {
         'id': 2,
@@ -26,9 +44,26 @@ export default function LocalDataBase(){
             'https://www.holidify.com/images/cmsuploads/compressed/-26975_10253_20170814163325.jpg',
             'https://www.holidify.com/images/cmsuploads/compressed/1024px-Nataraja01_20190618214610.jpg'
         ],
-        'capital': 'Maputo',
+        'corrector' : 
+        {
+            'nome': 'Gloria Fasutino Guro',
+            'telefone': 8499886069,
+            'email': 'corrector2@mail.com',
+        }
+      ,
+      'adress': 'Xipamanine, rua rovuma',
+      'wood': 'Baixa',
+      'city': 'Maputo',
+      'type' : 'Duplex full',
+      'condition': 'Nova, cerem construida',
+      'rooms': 6,
+      'badrooms': 3,
+      'utility': 'Aluger',
+      'price': 30000,
+      'currence': 'Mzn',
+      'rate': 4,
         'province':  "Maputo",
-        'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+        'description': "Supper confortavel e comodo"
       },
       {
         'id': 3,
@@ -38,13 +73,27 @@ export default function LocalDataBase(){
             "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
             "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_perth_cbd_bishops_house_20190618194703.jpg",
         ],
-        'capital': 'Nampula',
+        'corrector' : 
+          {
+              'nome': 'Armani Filipe',
+              'telefone': 846176069,
+              'email': 'correcto@mail.com',
+          }
+        ,
+        'adress': 'Namicopo rua 5',
+        'wood': 'Namicopo',
+        'city': 'Nampula',
+        'type' : '3',
+        'condition': 'Nova',
+        'rooms': 4,
+        'badrooms': 2,
+        'utility': 'Venda',
+        'price': 4000000,
+        'rate': 4,
+        'currence': 'Mzn',
         'province':  "Nampula",
-        'description': "Alguma descricao da cidade nessa area sera da autoria do poster"
+        'description': "Enfrente ao mar, um vista incomparavel e favoravel a trabalhadores (home office)"
       }];
-
-
-
 
 
 
