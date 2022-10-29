@@ -34,7 +34,7 @@ export default function Details({navigation, route}) {
     return (
      
         <NativeBaseProvider>
-            
+
                         <View style={{ height: ITEM_HEIGHT, overflow:"hidden" }}>
                             
                                 <Animated.FlatList                           
@@ -69,7 +69,7 @@ export default function Details({navigation, route}) {
 
                             
 
-                                <Box  ml={3} mr={3}>
+                                <Box  mx={3}>
 
                                         <HStack alignItems="center">
                                             <Badge colorScheme="warning" _text={{
@@ -89,10 +89,31 @@ export default function Details({navigation, route}) {
                                         <Text mt="2" fontSize="sm" color="coolGray.700">
                                             {description}
                                         </Text>
-                                        <Flex>
-                                            <Text mt="2" fontSize={12} fontWeight="medium" color="darkBlue.600">
-                                            Read More
+
+                                        <Flex flex={1} pt={3}>
+                                           
+                                            <Text mt="2" fontSize={18} fontWeight="medium" color="darkBlue.600">
+                                            <Icon   as={Ionicons} 
+                                                name="location" color="black" size={26} 
+                                                onPress={()=>navigation.goBack()}>   
+                                            </Icon>
+                                              Localização
                                             </Text>
+                                           
+                                            <HStack pt={3}>
+                                                <Text>
+                                                    <Icon   as={Ionicons} 
+                                                        name="home" color="black" size={4} 
+                                                        onPress={()=>navigation.goBack()}>   
+                                                    </Icon>
+                                                    <Spacer/> <Spacer/>
+                                                    {adress},
+                                                    <Spacer/> <Spacer/>
+                                                    {wood},
+                                                    <Spacer/> <Spacer/>
+                                                    {city}
+                                                </Text>
+                                            </HStack>
                                         </Flex>
 
                                 </Box>
