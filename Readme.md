@@ -1,8 +1,6 @@
-# NativeBase TypeScript Expo Template
+Real Estate Client-Side app. 
 
-The official NativeBase TypeScript template for [Expo](https://docs.expo.io/)
-
-## Usage
+# This project was all basead on NativeBase Ui librarie (Typescript)
 
 ```sh
 expo init my-app --template @native-base/expo-template-typescript
