@@ -12,6 +12,7 @@ export interface correctorInterface {
 
 export default function Corrector({owner}: {owner: correctorInterface}){
 
+    const msg = "Ola estou interresado em um dos seus imoveis";
 
     return (
         <Box bg="warning.100" py="4" px="3" borderRadius="5" rounded="md" mt={2} width={375} maxWidth="100%">
@@ -33,12 +34,16 @@ export default function Corrector({owner}: {owner: correctorInterface}){
 
                 <HStack mt={3} alignContent="flex-start" justifyContent="space-between">
 
-                    <Pressable borderRadius="20" rounded="xl" bg="success.400" alignSelf="flex-start" py="1" px="3" onPress={()=>Linking.openURL(`tel:${owner.telefone}`)}>
+                    <Pressable borderRadius="20" rounded="xl" bg="primary.600" alignSelf="flex-start" py="1" px="3" onPress={()=>Linking.openURL(`tel:${owner.telefone}`)}>
                          <Icon color="white" as={Ionicons} name="call" size={25} />
                     </Pressable>
 
-                    <Pressable borderRadius="20" rounded="xl" bg="info.600" alignSelf="flex-start" py="1" px="3" mr={3} onPress={()=>Linking.openURL(`mailto:${owner.email}`)}>
+                    <Pressable borderRadius="20" rounded="xl" bg="info.600" alignSelf="flex-start" py="1" px="3" mr={3} ml={3} onPress={()=>Linking.openURL(`mailto:${owner.email}`)}>
                         <Icon color="white" as={Ionicons} name="mail" size={25} />
+                    </Pressable>
+
+                    <Pressable borderRadius="20" rounded="xl" bg="success.600" alignSelf="flex-start" py="1" px="3" mr={3} onPress={()=>Linking.openURL(`whatsapp://send?text=${msg}&phone=${owner.telefone}`)}>
+                        <Icon color="white" as={Ionicons} name="logo-whatsapp" size={25} />
                     </Pressable>
 
                 </HStack>

@@ -17,7 +17,7 @@ export default function LocalDataBase(){
                 'corrector' : 
                 {
                     'nome': 'Gomes ferreira',
-                    'telefone': 8460096069,
+                    'telefone': +2588460096069,
                     'email': 'corrector1@mail.com',
                 }
               ,
@@ -47,7 +47,7 @@ export default function LocalDataBase(){
         'corrector' : 
         {
             'nome': 'Gloria Fasutino Guro',
-            'telefone': 8499886069,
+            'telefone': +2588499886069,
             'email': 'corrector2@mail.com',
         }
       ,
@@ -76,7 +76,7 @@ export default function LocalDataBase(){
         'corrector' : 
           {
               'nome': 'Armani Filipe',
-              'telefone': 846176069,
+              'telefone': +258846176069,
               'email': 'correcto@mail.com',
           }
         ,
