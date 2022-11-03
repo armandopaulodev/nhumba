@@ -7,6 +7,7 @@ import Search from '../src/pages/search/search';
 import Perfil from '../src/pages/perfil/perfil';
 import { createStackNavigator } from '@react-navigation/stack';
 import Details from '../src/pages/details/details';
+import Teste from '../src/shared/test/teste';
 
 
 
@@ -65,7 +66,7 @@ const Stack = createStackNavigator();
           }}/>
           <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: false}}/>
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}/>
-          <Tab.Screen name="Menu" component={Search} options={ {headerShown: true}}/>
+          <Tab.Screen name="Menu" component={Teste} options={ {headerShown: true}}/>
         </Tab.Navigator>
  
     );
