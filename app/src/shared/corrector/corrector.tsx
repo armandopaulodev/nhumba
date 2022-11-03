@@ -47,7 +47,7 @@ export default function Corrector({owner}: {owner: correctorInterface}){
                     </Pressable>
 
                 </HStack>
-                
+                <Text textAlign="justify" mt={5}>Ver Peefil completo</Text>
             </Box>
         </HStack>
      </Box>
