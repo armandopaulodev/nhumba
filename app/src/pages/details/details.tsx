@@ -5,6 +5,7 @@ Link, Spacer, Badge, Flex, Spinner, Pressable, VStack} from "native-base";
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import Corrector from '../../shared/corrector/corrector';
+import MapView from 'react-native-maps';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -138,6 +139,13 @@ export default function Details({navigation, route}) {
                                                 </Text>
                                             </HStack>
                                         </Flex>
+
+
+                                        {/* house mapa */}
+
+                                        <MapView style={{  height: height }} 
+                                        scrollDuringRotateOrZoomEnabled={true} 
+                                        zoomEnabled showsMyLocationButton={true} />
 
                                         {/* correcto */}
 
