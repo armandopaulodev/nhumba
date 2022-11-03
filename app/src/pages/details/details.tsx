@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { View, Animated, Dimensions, StyleSheet, Alert, Linking } from 'react-native';
 import {NativeBaseProvider,FlatList, Image, Text, Heading, Box, Icon, HStack,Fab,Center,
-Link, Spacer, Badge, Flex, Spinner} from "native-base";
+Link, Spacer, Badge, Flex, Spinner, Pressable, VStack} from "native-base";
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import Corrector from '../../shared/corrector/corrector';
 
 
 const {width, height} = Dimensions.get('screen');
@@ -65,6 +66,8 @@ export default function Details({navigation, route}) {
                                         }
                                 />
                         </View>
+
+                        {/* icon exit */}
                         <Icon   as={Ionicons} 
                                 name="close" color="warning.400" 
                                 size={30} style={{ position: 'absolute', top: 35, right: 25 }}
@@ -110,7 +113,7 @@ export default function Details({navigation, route}) {
                                             {description}
                                         </Text>
 
-                                        <Flex flex={1} pt={3}>
+                                        <Flex  pt={3}>
                                            
                                             <Text mt="2" fontSize={18} fontWeight="medium" color="darkBlue.600">
                                             <Icon   as={Ionicons} 
@@ -120,7 +123,7 @@ export default function Details({navigation, route}) {
                                               Localização
                                             </Text>
                                            
-                                            <HStack pt={3}>
+                                            <HStack pt={3} ml={1}>
                                                 <Text>
                                                     <Icon   as={Ionicons} 
                                                         name="home" color="black" size={4} 
@@ -136,11 +139,13 @@ export default function Details({navigation, route}) {
                                             </HStack>
                                         </Flex>
 
-                                        
+                                        {/* correcto */}
+
+                                        <Corrector owner={corrector}/>
 
                                 </Box>
                           
-                           
+                              
 
                             </BottomSheetScrollView>
                             

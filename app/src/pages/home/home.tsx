@@ -8,15 +8,17 @@ import {
   Divider,
   Switch,
   useColorMode,
-  NativeBaseProvider,StatusBar,Icon,
+  NativeBaseProvider,StatusBar,Icon,Select,CheckIcon,
   extendTheme,
-  Stack,AspectRatio, ScrollView,IconButton, useToast, Pressable,
-  Box, Image, Toast, FlatList, Spacer, 
+  Stack,AspectRatio, ScrollView,Flex,
+  Box, Image, Toast, FlatList, Spacer, View, VStack, Actionsheet, useDisclose,
 } from "native-base";
 
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Alert, TouchableOpacity, Dimensions } from 'react-native';
 import LocalDataBase from "../../../database/localDatabase";
+
+
 
 // Define the config
 const config = {
@@ -33,6 +35,11 @@ declare module "native-base" {
 export default function Home({navigation}: {navigation: any}) {
 
   const imoveis = LocalDataBase();
+  const { isOpen, onOpen, onClose } = useDisclose();
+  const {width, height} = Dimensions.get('screen');
+  const [service, setService] = React.useState("");
+
+ 
   
   
   return (
@@ -41,84 +48,133 @@ export default function Home({navigation}: {navigation: any}) {
             
              <ScrollView mt={2}>
 
-                    <ActivityIndicator color="blue" size="large" animating={true}></ActivityIndicator>
+                  
+
+                        <VStack w="100%" space={5}  mt={10} maxW='full'>
+
+                              <Box ml={2} mr={2} >
+                                  
+                                  <Stack direction="row" mb="2.5" mt="1.5" space={3}>
+                                    
+                                       <Heading color="primary.900" fontSize={18} fontFamily='Roboto'>Nhumba</Heading>
                 
-                    <Heading size="md" mb={1} ml={1}>Categorias</Heading>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} mb={2}>
-                        <Center h="20" w="20" bg="primary.300" rounded="md" shadow={3} ml={1} mr={1}/>
-                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1} />
-                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
-                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
-                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
-                        <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
-                        <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
-                    </ScrollView>
+                                        <Flex direction="row-reverse" mr={3} mb="2.5" mt="1.5" style={{ position: 'absolute',top:-20,  right: -4 }}>
+                                              <Box ml={5}>
+                                                <Icon onPress={onOpen} as={Ionicons} name="filter-sharp" size={7} mt={3} />
+                                              </Box>
+                                              <Box >
+                                              <Icon as={Ionicons} name="search" size={7} mt={3} onPress={() => {navigation.navigate('Buscar')}} />
+                                              </Box>
+                                              
+                                        </Flex>
+
+                                  </Stack>
+                              </Box>
+
+                        </VStack>
+
+
+
+                        <Actionsheet  isOpen={isOpen} onClose={onClose}>
+                        <Actionsheet.Content>
+                        <Heading>Filtrar Imoveis</Heading>
+                        <Actionsheet.Item>
+                         
+                        <Select selectedValue={service} minWidth="200" accessibilityLabel="Choose Service" placeholder="Aluguer" _selectedItem={{
+                          bg: "warning.600",
+                          endIcon: <CheckIcon size="5" />
+                        }} mt={1} onValueChange={itemValue => setService(itemValue)}>
+                            <Select.Item label="Venda" value="venda" />
+                            <Select.Item label="Aluguer" value="aluguer" />
+                          </Select>
+                          
+                        </Actionsheet.Item>
+                        <Actionsheet.Item>Option 2</Actionsheet.Item>
+                        <Actionsheet.Item>Option 3</Actionsheet.Item>
+                        <Actionsheet.Item color="red.500">Delete</Actionsheet.Item>
+                        </Actionsheet.Content>
+                        </Actionsheet>
+
               
-                  <FlatList data={imoveis} 
-                    renderItem={({item})=>
-                    <Box alignItems="center" mb={2}>
-                              <Box maxW="full" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-                            borderColor: "coolGray.600",
-                            backgroundColor: "gray.700"
-                          }} _web={{
-                            shadow: 2,
-                            borderWidth: 0
-                          }} _light={{
-                            backgroundColor: "gray.50"
-                          }}>
-                          <Box>
-                            <TouchableOpacity  onPress={() => {navigation.navigate('Details', item)}}>
-                                <AspectRatio w="100%" ratio={16 / 9}>
-                                  <Image source={{
-                                  uri: item.uri
-                                }} alt="image" />
-                                </AspectRatio>
-                                <Center bg="warning.400" _dark={{
-                                bg: "warning.400"
-                              }} _text={{
-                                color: "warmGray.50",
-                                fontWeight: "700",
-                                fontSize: "xs"
-                              }} position="absolute" bottom="0" px="3" py="1.5">
-                                  {item.city}
-                                </Center>
-                            </TouchableOpacity>
-                          </Box>
-                          <Stack p="4" space={3}>
-                            <Stack space={2}>
-                              <Heading size="md" ml="-1">
-                              {item.province}
-                              </Heading>
-                              <Text fontSize="xs" _light={{
-                              color: "violet.500"
-                            }} _dark={{
-                              color: "violet.200"
-                            }} fontWeight="500" ml="-0.5" mt="-1">
-                                {item.wood}
-                              </Text>
-                            </Stack>
-                            <Text fontWeight="200">
-                            {item.description}
-                            </Text>
-                            <HStack alignItems="center" space={4} justifyContent="space-between">
-                              <HStack alignItems="center">
-                                <Text color="coolGray.600" _dark={{
-                                color: "warning.400"
-                              }} fontWeight="200">
-                                  Tipo <Spacer/>
-                                  {item.type}
-                                </Text>
-                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
-                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
-                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
-                                <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
-                              </HStack>
-                            </HStack>
-                          </Stack>
-                        </Box>
-                    </Box>  
-                  }
-                  />
+
+                      <Heading size="md" mb={1} ml={1}>Categorias</Heading>
+                      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} mb={2}>
+                          <Center h="20" w="20" bg="primary.300" rounded="md" shadow={3} ml={1} mr={1}/>
+                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1} />
+                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
+                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
+                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
+                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
+                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
+                      </ScrollView>
+                
+                        <FlatList data={imoveis} 
+                          renderItem={({item})=>
+                          <Box alignItems="center" mb={2}>
+                                    <Box maxW="full"  overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
+                                  borderColor: "coolGray.600",
+                                  backgroundColor: "gray.700"
+                                }} _web={{
+                                  shadow: 2,
+                                  borderWidth: 0
+                                }} _light={{
+                                  backgroundColor: "gray.50"
+                                }}>
+                                <Box>
+                                  <TouchableOpacity  onPress={() => {navigation.navigate('Details', item)}}>
+                                      <AspectRatio w="100%" ratio={16 / 9}>
+                                        <Image source={{
+                                        uri: item.uri
+                                      }} alt="image" />
+                                      </AspectRatio>
+                                      <Center bg="warning.400" _dark={{
+                                      bg: "warning.400"
+                                    }} _text={{
+                                      color: "warmGray.50",
+                                      fontWeight: "700",
+                                      fontSize: "xs"
+                                    }} position="absolute" bottom="0" px="3" py="1.5">
+                                        {item.city}
+                                      </Center>
+                                  </TouchableOpacity>
+                                </Box>
+                                <Stack p="4" space={3}>
+                                  <Stack space={2}>
+                                    <Heading size="md" ml="-1">
+                                    {item.province}
+                                    </Heading>
+                                    <Text fontSize="xs" _light={{
+                                    color: "violet.500"
+                                  }} _dark={{
+                                    color: "violet.200"
+                                  }} fontWeight="500" ml="-0.5" mt="-1">
+                                      {item.wood}
+                                    </Text>
+                                  </Stack>
+                                  <Text fontWeight="200">
+                                  {item.description}
+                                  </Text>
+                                  <HStack alignItems="center" space={4} justifyContent="space-between">
+                                    <HStack alignItems="center">
+                                      <Text color="coolGray.600" _dark={{
+                                      color: "warning.400"
+                                    }} fontWeight="200">
+                                        Tipo <Spacer/>
+                                        {item.type}
+                                      </Text>
+                                      <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
+                                      <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
+                                      <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>  
+                                      <Icon as={Ionicons} name="star" color="warning.400" ml={1}></Icon>
+                                    </HStack>
+                                  </HStack>
+                                </Stack>
+                              </Box>
+                          </Box>  
+                        }
+                        />
+
+
 
              </ScrollView>
          
