@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { View, Animated, Dimensions, StyleSheet, Alert, Linking } from 'react-native';
 import {NativeBaseProvider,FlatList, Image, Text, Heading, Box, Icon, HStack,Fab,Center,
-Link, Spacer, Badge, Flex} from "native-base";
+Link, Spacer, Badge, Flex, Spinner} from "native-base";
 import BottomSheet, {BottomSheetScrollView} from '@gorhom/bottom-sheet';
 import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 
@@ -27,9 +27,18 @@ export default function Details({navigation, route}) {
     });
     
 
-    const scrollY = React.useRef(new Animated.Value(0)).current;
-     // variables
+     const scrollY = React.useRef(new Animated.Value(0)).current;
+
+     // variables bottom sheet
      const snapPoints = useMemo(() => ['45%', '80%'], []);
+
+     //Spinner
+
+     const [loader, setLoading] = useState(false);
+
+     const loadSpinner = ()=>{
+         setLoading(!loader);
+     }
 
     return (
      
@@ -50,8 +59,8 @@ export default function Details({navigation, route}) {
                                         )}
                                         renderItem={({item})=>
                                             <View>
-                                                <Image source={{ uri: item }} style={styles.imagens} alt="imoveis"/>
-                                               
+                                                <Image source={{ uri: item }} style={styles.imagens} alt="imoveis"
+                                                 onLoadStart={()=>loadSpinner()} onLoadEnd={()=>loadSpinner()}/>
                                             </View>
                                         }
                                 />
@@ -61,6 +70,17 @@ export default function Details({navigation, route}) {
                                 size={30} style={{ position: 'absolute', top: 35, right: 25 }}
                                 onPress={()=>navigation.goBack()}>   
                         </Icon>
+
+                        {/* Spinner */}
+                        {
+                                            loader ? 
+                                            <HStack  space={8} justifyContent="center"  style={{ backgroundColor: 'transparent', position: 'absolute', top: ITEM_HEIGHT/2}}>
+                                                <Spinner color="warning.500" size={50} width={ITEM_WIDTH} />
+                                            </HStack>
+                                            : 
+                                            null
+                        }
+                        
 
                         {/* bottom sheet area */}
 
@@ -115,6 +135,8 @@ export default function Details({navigation, route}) {
                                                 </Text>
                                             </HStack>
                                         </Flex>
+
+                                        
 
                                 </Box>
                           
