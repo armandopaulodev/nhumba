@@ -17,7 +17,7 @@ export default function LocalDataBase(){
                 'corrector' : 
                 {
                     'nome': 'Gomes ferreira',
-                    'telefone': +2588460096069,
+                    'telefone': 8460096069,
                     'email': 'corrector1@mail.com',
                 }
               ,
@@ -47,7 +47,7 @@ export default function LocalDataBase(){
         'corrector' : 
         {
             'nome': 'Gloria Fasutino Guro',
-            'telefone': +2588499886069,
+            'telefone': 8499886069,
             'email': 'corrector2@mail.com',
         }
       ,
@@ -76,13 +76,132 @@ export default function LocalDataBase(){
         'corrector' : 
           {
               'nome': 'Armani Filipe',
-              'telefone': +258846176069,
+              'telefone': 846176069,
               'email': 'correcto@mail.com',
           }
         ,
         'adress': 'Namicopo rua 5',
         'wood': 'Namicopo',
         'city': 'Nampula',
+        'type' : '3',
+        'condition': 'Nova',
+        'rooms': 4,
+        'badrooms': 2,
+        'utility': 'Venda',
+        'price': 4000000,
+        'rate': 4,
+        'currence': 'Mzn',
+        'province':  "Nampula",
+        'description': "Enfrente ao mar, um vista incomparavel e favoravel a trabalhadores (home office)"
+      }
+      ,
+      {
+        'id': 4,
+        'uri': "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+        'imgs' : [
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_medindie_gardens_house_20190618194107.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_perth_cbd_bishops_house_20190618194703.jpg",
+        ],
+        'corrector' : 
+          {
+              'nome': 'Armani Filipe',
+              'telefone': 846176069,
+              'email': 'correcto@mail.com',
+          }
+        ,
+        'adress': 'Namicopo rua 5',
+        'wood': 'Namicopo',
+        'city': 'Nampula 2',
+        'type' : '3',
+        'condition': 'Nova',
+        'rooms': 4,
+        'badrooms': 2,
+        'utility': 'Venda',
+        'price': 4000000,
+        'rate': 4,
+        'currence': 'Mzn',
+        'province':  "Nampula",
+        'description': "Enfrente ao mar, um vista incomparavel e favoravel a trabalhadores (home office)"
+      }
+      ,
+      {
+        'id': 5,
+        'uri': "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+        'imgs' : [
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_medindie_gardens_house_20190618194107.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_perth_cbd_bishops_house_20190618194703.jpg",
+        ],
+        'corrector' : 
+          {
+              'nome': 'Armani Filipe',
+              'telefone': 846176069,
+              'email': 'correcto@mail.com',
+          }
+        ,
+        'adress': 'Namicopo rua 5',
+        'wood': 'Namicopo',
+        'city': 'Nampula 2',
+        'type' : '3',
+        'condition': 'Nova',
+        'rooms': 4,
+        'badrooms': 2,
+        'utility': 'Venda',
+        'price': 4000000,
+        'rate': 4,
+        'currence': 'Mzn',
+        'province':  "Nampula",
+        'description': "Enfrente ao mar, um vista incomparavel e favoravel a trabalhadores (home office)"
+      }
+      ,
+      {
+        'id': 6,
+        'uri': "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+        'imgs' : [
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_medindie_gardens_house_20190618194107.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_perth_cbd_bishops_house_20190618194703.jpg",
+        ],
+        'corrector' : 
+          {
+              'nome': 'Armani Filipe',
+              'telefone': 846176069,
+              'email': 'correcto@mail.com',
+          }
+        ,
+        'adress': 'Namicopo rua 5',
+        'wood': 'Namicopo',
+        'city': 'Nampula 2',
+        'type' : '3',
+        'condition': 'Nova',
+        'rooms': 4,
+        'badrooms': 2,
+        'utility': 'Venda',
+        'price': 4000000,
+        'rate': 4,
+        'currence': 'Mzn',
+        'province':  "Nampula",
+        'description': "Enfrente ao mar, um vista incomparavel e favoravel a trabalhadores (home office)"
+      },
+      {
+        'id': 7,
+        'uri': "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+        'imgs' : [
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_medindie_gardens_house_20190618194107.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-Natarajartemple1_20190618213054.jpg",
+            "https://www.holidify.com/images/cmsuploads/compressed/1024px-OIC_perth_cbd_bishops_house_20190618194703.jpg",
+        ],
+        'corrector' : 
+          {
+              'nome': 'Armani Filipe',
+              'telefone': 846176069,
+              'email': 'correcto@mail.com',
+          }
+        ,
+        'adress': 'Namicopo rua 5',
+        'wood': 'Namicopo',
+        'city': 'Nampula 2',
         'type' : '3',
         'condition': 'Nova',
         'rooms': 4,

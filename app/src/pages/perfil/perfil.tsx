@@ -3,21 +3,11 @@ import { Box, Text, Heading, VStack, FormControl, Input, Link, Button, HStack, C
 import { Alert, ImageBackground  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export interface login {
-     name: String,
-     password: String
-}
 
 export default function Perfil(){
 
 
-const storeData = async (value:login) => {
-    try {
-      await AsyncStorage.setItem('@storage_Key', value)
-    } catch (e) {
-      // saving error
-    }
-  }
+
 
 return (
 

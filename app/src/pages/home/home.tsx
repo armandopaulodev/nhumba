@@ -17,6 +17,7 @@ import {
 import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { Alert, TouchableOpacity, Dimensions } from 'react-native';
 import LocalDataBase from "../../../database/localDatabase";
+import GridFlatList from 'grid-flatlist-react-native';
 
 
 
@@ -97,21 +98,17 @@ export default function Home({navigation}: {navigation: any}) {
 
               
 
-                      <Heading size="md" mb={1} ml={1}>Categorias</Heading>
-                      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} mb={2}>
-                          <Center h="20" w="20" bg="primary.300" rounded="md" shadow={3} ml={1} mr={1}/>
-                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1} />
-                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
-                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
-                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}/>
-                          <Center h="20" w="20" bg="primary.500" rounded="md" shadow={3} ml={1} mr={1}/>
-                          <Center h="20" w="20" bg="primary.700" rounded="md" shadow={3} ml={1} mr={1}>ol</Center>
-                      </ScrollView>
                 
-                        <FlatList data={imoveis} 
-                          renderItem={({item})=>
+                
+                        {/* <FlatList data={imoveis} 
+                          renderItem={({item})=> 
+                        }
+                        />   */}
+
+                      <GridFlatList data={imoveis}
+                        renderItem={(item : any) => 
                           <Box alignItems="center" mb={2}>
-                                    <Box maxW="full"  overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
+                                <Box maxW="full"  overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
                                   borderColor: "coolGray.600",
                                   backgroundColor: "gray.700"
                                 }} _web={{
@@ -151,9 +148,7 @@ export default function Home({navigation}: {navigation: any}) {
                                       {item.wood}
                                     </Text>
                                   </Stack>
-                                  <Text fontWeight="200">
-                                  {item.description}
-                                  </Text>
+                      
                                   <HStack alignItems="center" space={4} justifyContent="space-between">
                                     <HStack alignItems="center">
                                       <Text color="coolGray.600" _dark={{
@@ -170,9 +165,13 @@ export default function Home({navigation}: {navigation: any}) {
                                   </HStack>
                                 </Stack>
                               </Box>
-                          </Box>  
+                          </Box> 
                         }
-                        />
+                        gap={6}
+                        paddingHorizontal={4} // Shadow around elements will not be clipped
+                      />
+
+
 
 
 
