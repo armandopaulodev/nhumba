@@ -20,7 +20,7 @@ export default function Corrector({owner}: {owner: correctorInterface}){
             
             <Image source={{
             uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
-            }} alt="Aang flying and surrounded by clouds" height="100" rounded="full" width="100" />
+            }} alt='logo' height="100" rounded="full" width="100" />
 
             <Box ml={5}>
                 <VStack >
@@ -47,7 +47,7 @@ export default function Corrector({owner}: {owner: correctorInterface}){
                     </Pressable>
 
                 </HStack>
-                <Text textAlign="justify" mt={5}>Ver Peefil completo</Text>
+                <Text textAlign="justify" mt={5}>Ver Perfil completo</Text>
             </Box>
         </HStack>
      </Box>

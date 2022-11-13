@@ -66,7 +66,7 @@ const Stack = createStackNavigator();
           }}/>
           <Tab.Screen name="Perfil" component={Perfil} options={ {headerShown: false}}/>
           <Tab.Screen name="Buscar" component={Search} options={ {headerShown: false}}/>
-          <Tab.Screen name="Menu" component={Teste} options={ {headerShown: true}}/>
+          {/* <Tab.Screen name="Menu" component={Teste} options={ {headerShown: true}}/> */}
         </Tab.Navigator>
  
     );

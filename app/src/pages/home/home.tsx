@@ -18,6 +18,7 @@ import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { Alert, TouchableOpacity, Dimensions } from 'react-native';
 import LocalDataBase from "../../../database/localDatabase";
 import GridFlatList from 'grid-flatlist-react-native';
+import { color } from "react-native-reanimated";
 
 
 
@@ -47,7 +48,7 @@ export default function Home({navigation}: {navigation: any}) {
     <NativeBaseProvider>
 
             
-             <ScrollView mt={2}>
+           
 
                   
 
@@ -62,11 +63,7 @@ export default function Home({navigation}: {navigation: any}) {
                                         <Flex direction="row-reverse" mr={3} mb="2.5" mt="1.5" style={{ position: 'absolute',top:-20,  right: -4 }}>
                                               <Box ml={5}>
                                                 <Icon onPress={onOpen} as={Ionicons} name="filter-sharp" size={7} mt={3} />
-                                              </Box>
-                                              <Box >
-                                              <Icon as={Ionicons} name="search" size={7} mt={3} onPress={() => {navigation.navigate('Buscar')}} />
-                                              </Box>
-                                              
+                                              </Box>     
                                         </Flex>
 
                                   </Stack>
@@ -99,13 +96,19 @@ export default function Home({navigation}: {navigation: any}) {
               
 
                 
-                
-                        {/* <FlatList data={imoveis} 
+                        <Text pl={2} pt={1} fontSize={10}  bg="coolGray.700" color="white">
+                          <Spacer/>
+                            <Icon onPress={onOpen} as={Ionicons} color="white" name="filter-sharp"  mt={3} /> <Spacer/>
+                             Filtro actual : Todos <Spacer/> 200 mt
+                        </Text>
+
+                        {/* <FlatList data={imoveis}
                           renderItem={({item})=> 
+                   
                         }
                         />   */}
 
-                      <GridFlatList data={imoveis}
+                      <GridFlatList data={imoveis}  keyExtractor={(item)=>item.id}
                         renderItem={(item : any) => 
                           <Box alignItems="center" mb={2}>
                                 <Box maxW="full"  overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
@@ -118,40 +121,38 @@ export default function Home({navigation}: {navigation: any}) {
                                   backgroundColor: "gray.50"
                                 }}>
                                 <Box>
-                                  <TouchableOpacity  onPress={() => {navigation.navigate('Details', item)}}>
-                                      <AspectRatio w="100%" ratio={16 / 9}>
+                                  <TouchableOpacity   onPress={() => {navigation.navigate('Details', item)}}>
+                                      <AspectRatio w="100%" >
                                         <Image source={{
                                         uri: item.uri
                                       }} alt="image" />
                                       </AspectRatio>
-                                      <Center bg="warning.400" _dark={{
+
+                                    <Center bg="warning.400" _dark={{
                                       bg: "warning.400"
-                                    }} _text={{
-                                      color: "warmGray.50",
-                                      fontWeight: "700",
-                                      fontSize: "xs"
-                                    }} position="absolute" bottom="0" px="3" py="1.5">
-                                        {item.city}
+                                      }} _text={{
+                                        color: "warmGray.50",
+                                        fontWeight: "700",
+                                        fontSize: "xs"
+                                      }} position="absolute" bottom="0" px="3" py="1.5">
+                                          {item.city}
                                       </Center>
                                   </TouchableOpacity>
                                 </Box>
                                 <Stack p="4" space={3}>
                                   <Stack space={2}>
-                                    <Heading size="md" ml="-1">
-                                    {item.province}
-                                    </Heading>
                                     <Text fontSize="xs" _light={{
                                     color: "violet.500"
                                   }} _dark={{
                                     color: "violet.200"
                                   }} fontWeight="500" ml="-0.5" mt="-1">
-                                      {item.wood}
+                                      {item.wood} -<Spacer/> {item.badrooms} Quartos 
                                     </Text>
                                   </Stack>
                       
                                   <HStack alignItems="center" space={4} justifyContent="space-between">
                                     <HStack alignItems="center">
-                                      <Text color="coolGray.600" _dark={{
+                                      <Text color="coolGray.600" fontSize="sm" _dark={{
                                       color: "warning.400"
                                     }} fontWeight="200">
                                         Tipo <Spacer/>
@@ -175,7 +176,7 @@ export default function Home({navigation}: {navigation: any}) {
 
 
 
-             </ScrollView>
+            
          
     </NativeBaseProvider>
   );

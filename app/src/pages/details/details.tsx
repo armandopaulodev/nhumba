@@ -19,7 +19,7 @@ export default function Details({navigation, route}) {
     const [imagens, setimagens] = useState([]);
 
     //getting route params
-    const {id, type, utility, province, currence, description, adress, wood,city,
+    const {id, type, utility, province,condition, currence, description, adress, wood,city,
         uri, imgs, corrector, price}=route.params;
 
     useEffect(() => {
@@ -70,8 +70,8 @@ export default function Details({navigation, route}) {
 
                         {/* icon exit */}
                         <Icon   as={Ionicons} 
-                                name="close" color="warning.400" 
-                                size={30} style={{ position: 'absolute', top: 35, right: 25 }}
+                                name="close" color="white" 
+                                size={31} style={{ position: 'absolute', top: 35, left: 10 }}
                                 onPress={()=>navigation.goBack()}>   
                         </Icon>
 
@@ -110,8 +110,11 @@ export default function Details({navigation, route}) {
                                         <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
                                             Tipo <Spacer/> {type}
                                         </Text>
-                                        <Text mt="2" fontSize="sm" color="coolGray.700">
+                                        <Text mt="2" fontSize="lg" color="coolGray.700">
                                             {description}
+                                        </Text>
+                                        <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="sm">
+                                            Condicao:  <Spacer/> {condition}
                                         </Text>
 
                                         <Flex  pt={3}>
@@ -124,7 +127,7 @@ export default function Details({navigation, route}) {
                                               Localização
                                             </Text>
                                            
-                                            <HStack pt={3} ml={1}>
+                                            <HStack pt={3} ml={2}>
                                                 <Text>
                                                     <Icon   as={Ionicons} 
                                                         name="home" color="black" size={4} 
@@ -143,9 +146,9 @@ export default function Details({navigation, route}) {
 
                                         {/* house mapa */}
 
-                                        <MapView style={{  height: height }} 
+                                        {/* <MapView style={{  height: height }} 
                                         scrollDuringRotateOrZoomEnabled={true} 
-                                        zoomEnabled showsMyLocationButton={true} />
+                                        zoomEnabled showsMyLocationButton={true} /> */}
 
                                         {/* correcto */}
 
@@ -161,9 +164,9 @@ export default function Details({navigation, route}) {
                         
                         {/* button floating fab */}
 
-                        <Fab renderInPortal={false} shadow={2} size="sm" colorScheme="warning"
+                        {/* <Fab renderInPortal={false} shadow={2} size="sm" colorScheme="warning"
                          icon={<Icon color="white" as={Ionicons} name="call" size={25} />} 
-                         onPress={()=>Linking.openURL(`tel:${corrector.telefone}`)} />
+                         onPress={()=>Linking.openURL(`tel:${corrector.telefone}`)} /> */}
 
 
         </NativeBaseProvider>            
