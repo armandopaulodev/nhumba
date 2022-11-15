@@ -59,6 +59,9 @@ const logout = () => {
 
 const removeUser = async()=>{
    await AsyncStorage.removeItem('user');
+   newUser.email="";
+   newUser.name="";
+   newUser.password="";
    setUser('')
 }
 

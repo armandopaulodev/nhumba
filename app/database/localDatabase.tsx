@@ -144,8 +144,8 @@ export default function LocalDataBase(){
                 }
               ,
               'adress': '24 de Julho',
-              'wood': 'Esturro',
-              'city': 'Beira',
+              'wood': 'Algum Bairo',
+              'city': 'Chimoio',
               'type' : 'Flat/Moderno',
               'condition': 'Precisando de pitura apenas e alguns retoques interior',
               'rooms': 5,
@@ -154,7 +154,7 @@ export default function LocalDataBase(){
               'price': 200000,
               'currence': 'Mzn',
               'rate': 4,
-        'province':  "Sofala",
+        'province':  "Manica",
         'description': "Bem proximo a cidade, menos deslocamento para si"
       }];
 

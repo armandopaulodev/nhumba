@@ -23,6 +23,7 @@
     "@react-navigation/bottom-tabs": "^6.3.3",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/stack": "^6.3.2",
+    "axios": "^1.1.3",
     "expo": "^44.0.0",
     "expo-status-bar": "~1.2.0",
     "grid-flatlist-react-native": "^0.1.8",
