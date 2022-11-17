@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Estilo } from '../../shared/styles/sharedStyles';
 import { View,  TouchableOpacity, StyleSheet, Alert} from 'react-native'
 import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Formik } from 'formik';
 
 export default function Perfil(){
   const[user, setUser] =useState("");
@@ -90,38 +91,59 @@ return (
                                                     <Heading mt="1" _dark={{
                                                     color: "warmGray.200"
                                                   }} color="coolGray.600" fontWeight="medium" size="xs">
-                                                      Bem vindo, faca login pra continuar!
+                                                      Entrar como corrector!
                                                     </Heading>
                                               </Box>
                             
                                               <VStack space={3} mt="5">
-                                                <FormControl>
-                                                  <FormControl.Label>Nome</FormControl.Label>
-                                                  <Input type="text" onChangeText={(value)=>newUser.name=value}/>
-                                                </FormControl>
-                                                <FormControl>
-                                                  <FormControl.Label>Email ID</FormControl.Label>
-                                                  <Input type="email" onChangeText={(value)=>newUser.email=value}/>
-                                                </FormControl>
-                                                <FormControl> 
-                                                  <FormControl.Label>Password</FormControl.Label>
-                                                  <Input type="password" onChangeText={(value)=>newUser.password=value}/>
-                                                  <Link _text={{
-                                                  fontSize: "xs",
-                                                  fontWeight: "500",
-                                                  color: "amber.500"
-                                                }} alignSelf="flex-end" mt="1">
-                                                    Esqueceu a senha?
-                                                  </Link>
-                                                </FormControl>
-                                                <Button mt="2" colorScheme="amber" onPress={()=>login(newUser)}>
-                                                  Entrar
-                                                </Button>
+                                              <Formik initialValues={{ email: '', password: '' }}
+                                                  onSubmit={(values) => {
+
+                                                         Alert.alert('teste', values.password);
+
+                                                  } }
+
+                                                  >
+                                                  {props => (
+                                                    <View>
+
+                                                      <FormControl>
+                                                      <FormControl.Label>Nome</FormControl.Label>
+                                                      <Input type="text"
+                                                       placeholder='Email'
+                                                       onChangeText={props.handleChange('email')}
+                                                       value={props.values.email}/>
+                                                      </FormControl>
+
+                                                      <FormControl>
+                                                      <FormControl.Label>Senha</FormControl.Label>
+                                                      <Input 
+                                                        // multiline
+                                                        type="password"
+                                                        autoCorrect={false}
+                                                        secureTextEntry={true}
+                                                        placeholder='Password'
+                                                        placeholderTextColor="silver"
+                                                        onChangeText={props.handleChange('password')}
+                                                        value={props.values.password}/>
+                                                      </FormControl>
+                                                          
+
+                                    
+
+                                                    
+                                                      <Button mt="5" colorScheme="amber" onPress={props.handleSubmit} touchSoundDisabled='true'>
+                                                      Entrar                                          
+                                                      </Button>
+                                                    </View>
+                                                  )}
+                                                  </Formik>
+                                              
                                                 <HStack mt="6" justifyContent="center">
                                                   <Text fontSize="sm" color="amber.600" _dark={{
                                                   color: "warmGray.200"
                                                 }}>
-                                                    Nao tem conta?.{" "}
+                                                   Gostaria de tornar um?.{" "}
                                                   </Text>
                                                   <Link _text={{
                                                   color: "indigo.500",

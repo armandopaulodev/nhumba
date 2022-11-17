@@ -26,8 +26,8 @@ const fectUser = async() =>{
 
     axios.get('http://192.168.133.187:8000/api/test')
     .then(res=>{
-        setImoveis(res.data);
-    })
+        console.log(res.data);
+    });
 
     // http://192.168.133.187:8000/
 }
