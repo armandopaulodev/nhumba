@@ -8,14 +8,21 @@ import { Estilo } from '../../shared/styles/sharedStyles';
 import { View,  TouchableOpacity, StyleSheet, Alert} from 'react-native'
 import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import { Formik } from 'formik';
+import axios from "axios";
+
+
 
 export default function Perfil(){
   const[user, setUser] =useState("");
   const[newUser, setNewUser] = useState({name: "", password: "", email:""});
 
+  
+
   useEffect(()=>{
 
         getUser();
+       
+        
 
   })
 
@@ -39,8 +46,15 @@ const createUser = async(item : any)=>{
 }
 
 
-const login = async(user: any)=>{
-   await createUser(JSON.stringify(user));
+const login = async()=>{
+ 
+  await axios.post('http://192.168.133.187:8000/api/user/login',
+    {
+      'email': "armandopaulo@netware.co.mz",
+      'password': 12345678
+    }
+  ).then((res)=>{console.log(res.data)}).catch(error=>console.log(error));
+
  }
 
 
@@ -99,7 +113,7 @@ return (
                                               <Formik initialValues={{ email: '', password: '' }}
                                                   onSubmit={(values) => {
 
-                                                         Alert.alert('teste', values.password);
+                                                       login();
 
                                                   } }
 
@@ -132,8 +146,8 @@ return (
                                     
 
                                                     
-                                                      <Button mt="5" colorScheme="amber" onPress={props.handleSubmit} touchSoundDisabled='true'>
-                                                      Entrar                                          
+                                                      <Button mt="5" colorScheme="amber" onPress={props.handleSubmit}>
+                                                       Entrar                                          
                                                       </Button>
                                                     </View>
                                                   )}
