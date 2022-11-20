@@ -1,64 +1,65 @@
-import * as React  from "react";
-import { Box, Text, Heading, VStack,Pressable,
-   FormControl, Input, Link, Button, HStack,Menu, HamburgerIcon,
-    Center,Icon, NativeBaseProvider, Image } from "native-base";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState, useEffect } from "react";
-import { Estilo } from '../../shared/styles/sharedStyles';
-import { View,  TouchableOpacity, StyleSheet, Alert} from 'react-native'
-import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { useState, useEffect } from 'react';
+
 import { Formik } from 'formik';
-import axios from "axios";
+import {
+  Box,
+  Button,
+  Center,
+  FormControl,
+  Heading,
+  HStack,
+  Icon,
+  Image,
+  Input,
+  Link,
+  NativeBaseProvider,
+  Text,
+  VStack,
+} from 'native-base';
+import {
+  Alert,
+  StyleSheet,
+  View,
+} from 'react-native';
 
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { AuthService } from '../../shared/services/AuthService';
 
 export default function Perfil(){
   const[user, setUser] =useState("");
-  const[newUser, setNewUser] = useState({name: "", password: "", email:""});
-
+  let auth = new AuthService;
   
+  
+useEffect(()=>{
 
-  useEffect(()=>{
+     auth.getUser().then((name)=>{
+        // setUser(name);
+        console.log(name)
+     })
 
-        getUser();
-       
-        
-
-  })
-
-
-
-const getUser = async() =>{
-
-    let user = await  AsyncStorage.getItem('user').then((data: any)=>{
-      let a = JSON.parse(data);
-      setUser(a.name);
-    })
-}
-
-const createUser = async(item : any)=>{
-   await AsyncStorage.setItem('user', item).then(()=>{
-        AsyncStorage.getItem('user').then((data: any)=>{
-          let a = JSON.parse(data);
-          setUser(a.name);
-        })
-   });
-}
+})
 
 
-const login = async()=>{
+
+const login = async(user: any)=>{
  
-  await axios.post('http://192.168.133.187:8000/api/user/login',
-    {
-      'email': "armandopaulo@netware.co.mz",
-      'password': 12345678
-    }
-  ).then((res)=>{console.log(res.data)}).catch(error=>console.log(error));
+     auth.login(user).then((name)=>{
+
+      setUser(name);
+      let all = AsyncStorage.getAllKeys();
+
+      console.log(all);
+
+     });
+
+
 
  }
 
 
-const logout = () => {
+ const logout = async() => {
   Alert.alert(
     "Logout",
     "Tem de certeza que deseja terminar sessao",
@@ -68,17 +69,15 @@ const logout = () => {
         onPress: () => console.log("Cancel Pressed"),
         style: "cancel"
       },
-      { text: "Sim", onPress: () => removeUser() }
-    ])
-}
+      { text: "Sim", onPress: () => auth.logout().then(()=>{
+          setUser('');
+      }) 
+    }
 
-const removeUser = async()=>{
-   await AsyncStorage.removeItem('user');
-   newUser.email="";
-   newUser.name="";
-   newUser.password="";
-   setUser('')
-}
+    ]);
+ }
+
+
 
 
 return (
@@ -113,7 +112,7 @@ return (
                                               <Formik initialValues={{ email: '', password: '' }}
                                                   onSubmit={(values) => {
 
-                                                       login();
+                                                       login(values);
 
                                                   } }
 
