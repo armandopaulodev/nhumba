@@ -23,23 +23,23 @@ import {
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { AuthService } from '../../shared/services/AuthService';
 
+
+
 export default function Perfil(){
-  const[user, setUser] =useState("");
-  let auth = new AuthService;
+
+const[user, setUser] =useState("");
+let auth = new AuthService;
   
-  
+
 useEffect(()=>{
-
-     auth.getUser().then((name)=>{
-        // setUser(name);
-        console.log(name)
-     })
-
-})
+    auth.getUser().then((name)=>{
+        if(name!=null){
+          setUser(name);
+        }
+    });
+});
 
 
 
@@ -48,9 +48,6 @@ const login = async(user: any)=>{
      auth.login(user).then((name)=>{
 
       setUser(name);
-      let all = AsyncStorage.getAllKeys();
-
-      console.log(all);
 
      });
 
@@ -78,10 +75,7 @@ const login = async(user: any)=>{
  }
 
 
-
-
 return (
-
         <NativeBaseProvider>
           
 
@@ -208,8 +202,6 @@ return (
           
         </NativeBaseProvider>
 );
-
-
 
 }
 

@@ -1,163 +1,102 @@
-import React, {useState, useEffect}  from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import {
+  SafeAreaView,
+  View,
+  TextInput,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ListItem from '../../shared/components/ListItem';
 
-import { VStack, NativeBaseProvider,Icon, Box, Divider,Input,
-Heading, Stack, Center, Button,FlatList,
- Actionsheet,Skeleton, HStack, useDisclose,
-  Avatar,  Text, Spacer, ScrollView   }
-from 'native-base';
+import results from '../../../database/results';
 
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import axios from 'axios';
-import { Alert } from 'react-native';
+const Search = () => {
+  const [searchText, setSearchText] = useState('');
+  const [list, setList] = useState(results);
 
+  useEffect(() => {
+    if (searchText === '') {
+      setList(results);
+    } else {
+      setList(
+        results.filter(
+          (item) =>
+            item.name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+        )
+      );
+    }
+  }, [searchText]);
 
+  const handleOrderClick = () => {
+    let newList = [...results];
 
+    newList.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 
-export default function Search(){
-const[skeleton, setSkeleton]=useState(true);
-const[imoveis, setImoveis]=useState([]);
-const { isOpen, onOpen, onClose } = useDisclose();
+    setList(newList);
+  };
 
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.searchArea}>
+        <TextInput
+          style={styles.input}
+          placeholder="Pesquise uma pessoa"
+          placeholderTextColor="#888"
+          value={searchText}
+          onChangeText={(t) => setSearchText(t)}
+        />
+        <TouchableOpacity onPress={handleOrderClick} style={styles.orderButton}>
+          <MaterialCommunityIcons
+            name="order-alphabetical-ascending"
+            size={32}
+            color="#888"
+          />
+        </TouchableOpacity>
+      </View>
 
-useEffect(()=>{
-        fectUser();
+      <FlatList
+        data={list}
+        style={styles.list}
+        renderItem={({ item }) => <ListItem data={item} />}
+        keyExtractor={(item) => item.id}
+      />
+
+      <StatusBar style="light" />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#242425',
+  },
+  input: {
+    flex: 1,
+    height: 50,
+    backgroundColor: '#363636',
+    margin: 30,
+    borderRadius: 5,
+    fontSize: 19,
+    paddingLeft: 15,
+    paddingRight: 15,
+    color: '#FFFFFF',
+  },
+  searchArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  orderButton: {
+    width: 32,
+    marginRight: 30,
+  },
+  list: {
+    flex: 1,
+  },
 });
-const fectUser = async() =>{
 
-    axios.get('http://192.168.133.187:8000/api/test')
-    .then(res=>{
-        console.log(res.data);
-    });
-
-    // http://192.168.133.187:8000/
-}
-
-return (
-        <NativeBaseProvider>
-                         <VStack w="100%" space={5}  mt={10} maxW='full'>
-
-                                <Box ml={2} mr={2}>
-                                    
-                                    <Heading color="primary.900" fontSize={18} fontFamily='Roboto' ml={2}>Buscar imóveis</Heading>
-
-                                    <Stack direction="row" mb="2.5" mt="1.5" space={3} maxW="full">
-                                        <Box width={330}>
-                                              <Input mt={3} placeholder="Buscar imóveis" variant="filled"  width="100%" borderRadius="10" py="1" px="2" borderWidth="2" borderColor="blue.100"
-                                              onChange={()=>setSkeleton(false)} InputLeftElement={<Icon ml="2" size="4" color="gray.400" as={<Ionicons name="ios-search" />} />} />
-                                        </Box>
-                                        <Box>
-
-                                          <Icon onPress={onOpen} as={Ionicons} name="filter-sharp" size={10} mt={3} />
-
-                                        </Box>
-                                    </Stack>
-                                </Box>
-                         </VStack>
-
-                                        <Actionsheet  isOpen={isOpen} onClose={onClose}>
-                                        <Actionsheet.Content>
-                                        <Heading>Filtrar Imoveis</Heading>
-                                        <Actionsheet.Item>Option 1</Actionsheet.Item>
-                                        <Actionsheet.Item>Option 2</Actionsheet.Item>
-                                        <Actionsheet.Item>Option 3</Actionsheet.Item>
-                                        <Actionsheet.Item color="red.500">Delete</Actionsheet.Item>
-                                        </Actionsheet.Content>
-                                        </Actionsheet>
-
-
-                      
-                            {
-                                skeleton?
-                                  <FlatList data={imoveis} keyExtractor={(item: any) => item.id}
-                                  renderItem={(item: any) =>
-                                    <Text>{item.name}</Text>
-                                    }
-                              
-                                  /> 
-                              
-                                 :
-                                 <Box ml={2} mr={2}>
-
-                                    <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{
-                                        borderColor: "coolGray.500"
-                                        }} _light={{
-                                        borderColor: "coolGray.200"
-                                        }} p="4">
-                                                <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
-                                                <VStack flex="3" space="4">
-                                                <Skeleton startColor="amber.300" />
-                                                <Skeleton.Text />
-                                                <HStack space="2" alignItems="center">
-                                                <Skeleton size="5" rounded="full" />
-                                                <Skeleton h="3" flex="2" rounded="full" />
-                                                <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
-                                                </HStack>
-                                                </VStack>
-                                    </HStack>
-
-                                    <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{
-                                        borderColor: "coolGray.500"
-                                        }} _light={{
-                                        borderColor: "coolGray.200"
-                                        }} p="4">
-                                                <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
-                                                <VStack flex="3" space="4">
-                                                <Skeleton startColor="darkBlue.400" />
-                                                <Skeleton.Text />
-                                                <HStack space="2" alignItems="center">
-                                                <Skeleton size="5" rounded="full" />
-                                                <Skeleton h="3" flex="2" rounded="full" />
-                                                <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
-                                                </HStack>
-                                                </VStack>
-                                    </HStack>
-
-                                    <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md"  _dark={{
-                                        borderColor: "coolGray.500"
-                                        }} _light={{
-                                        borderColor: "coolGray.200"
-                                        }} p="4">
-                                                <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
-                                                <VStack flex="3" space="4">
-                                                <Skeleton startColor="yellow.50" />
-                                                <Skeleton.Text />
-                                                <HStack space="2" alignItems="center">
-                                                <Skeleton size="5" rounded="full" />
-                                                <Skeleton h="3" flex="2" rounded="full" />
-                                                <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
-                                                </HStack>
-                                                </VStack>
-                                    </HStack>
-
-                                    <HStack w="full" mt={2} maxW="full" borderWidth="1" space={8} rounded="md" _dark={{
-                                        borderColor: "coolGray.500"
-                                        }} _light={{
-                                        borderColor: "coolGray.200"
-                                        }} p="4">
-                                                <Skeleton flex="1" h="150" rounded="md" startColor="coolGray.100" />
-                                                <VStack flex="3" space="4">
-                                                <Skeleton startColor="cyan.400" />
-                                                <Skeleton.Text />
-                                                <HStack space="2" alignItems="center">
-                                                <Skeleton size="5" rounded="full" />
-                                                <Skeleton h="3" flex="2" rounded="full" />
-                                                <Skeleton h="3" flex="1" rounded="full" startColor="indigo.300" />
-                                                </HStack>
-                                                </VStack>
-                                    </HStack>
-                                
-
-            
-
-                            
-                                    </Box>
-                            }
-
-                             
-
-                       
-
-        </NativeBaseProvider>
-);
-
-}
+export default Search;

@@ -21,7 +21,7 @@ login = async(user: user) => {
                 }
                 ).then((res)=>{
                   this.unsername=res.data['user'].name;
-                  AsyncStorage.setItem('user',res.data['user'] ); //criando o usuario local
+                  AsyncStorage.setItem('user',JSON.stringify(res.data['user'])); //criando o usuario local
                 }).catch(error=>console.log(error));
 
 
@@ -45,7 +45,9 @@ getUser = async() =>{
 
   let user = await  AsyncStorage.getItem('user').then((data: any)=>{
     let a = JSON.parse(data);
-    this.unsername = a.name;
+    if(a!=null){
+      this.unsername = a.name;
+    }
   });
 
   return this.unsername;
