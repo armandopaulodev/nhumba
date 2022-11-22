@@ -1,22 +1,22 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import React from "react";
+import { cos } from "react-native-reanimated";
 
 
 export class RealState {
 
 
+    getAll = async () =>{
 
 
-    getAll = () =>{
-
-
-       let all = axios.get('http://192.168.133.187:8000/api/realstate/all')
+       let all =await axios.get('http://192.168.133.187:8000/api/realstate/all')
         .then(res=>{
               return res.data
         });
 
-
-        return all;
+        AsyncStorage.removeItem("realstate");
+        AsyncStorage.setItem("realstate", JSON.stringify(all));
     
         // http://192.168.133.187:8000/
     }
