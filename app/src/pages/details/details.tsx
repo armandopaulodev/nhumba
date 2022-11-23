@@ -20,7 +20,7 @@ export default function Details({navigation, route}) {
 
     //getting route params
     const {id, type, utility, province,condition, currence, description, adress, wood,city,
-        uri, imgs, corrector, price}=route.params;
+        uri, imgs, realtor, price}=route.params;
 
     useEffect(() => {
 
@@ -152,7 +152,7 @@ export default function Details({navigation, route}) {
 
                                         {/* correcto */}
 
-                                        <Corrector owner={corrector}/>
+                                        <Corrector owner={realtor}/>
 
                                 </Box>
                           

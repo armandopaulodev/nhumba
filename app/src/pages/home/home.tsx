@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Text,
   Link,
@@ -18,7 +18,7 @@ import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { Alert, TouchableOpacity, Dimensions } from 'react-native';
 import LocalDataBase from "../../../database/localDatabase";
 import GridFlatList from 'grid-flatlist-react-native';
-import { color } from "react-native-reanimated";
+import { RealState } from "../../shared/services/RealStateService";
 
 
 
@@ -40,10 +40,31 @@ export default function Home({navigation}: {navigation: any}) {
   const { isOpen, onOpen, onClose } = useDisclose();
   const {width, height} = Dimensions.get('screen');
   const [service, setService] = React.useState("");
+  const [list, setList] = React.useState([]);
+  let realstate = new RealState;
 
  
-  
-  
+  useEffect(()=>{
+      fecthRealstate();
+  }, []);
+
+  const fecthRealstate = () =>{
+
+    fetch(realstate.url,{
+     method: "GET",
+     headers: {
+       "Conten-Type" : "application/json"
+     }
+    }).then(res=>{
+        return   res.json();
+    }).then(res=>{
+
+        let data = res.data;
+        setList(data);
+        console.log(res.data);
+    })
+
+}  
   return (
     <NativeBaseProvider>
 
@@ -108,7 +129,7 @@ export default function Home({navigation}: {navigation: any}) {
                         }
                         />   */}
 
-                      <GridFlatList data={imoveis} keyExtractor={(item) => item.id}
+                      <GridFlatList data={list} keyExtractor={(item) => item.id}
                          renderItem={(item: any) => <Box alignItems="center" mb={2}>
                         <Box maxW="full" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
                             borderColor: "coolGray.600",

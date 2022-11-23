@@ -5,9 +5,10 @@ import { MaterialIcons, Ionicons, FontAwesome, AntDesign } from "@expo/vector-ic
 import {Linking} from 'react-native';
 
 export interface correctorInterface {
-     nome : String,
-     telefone: Number,
-     email: String
+     name : String,
+     cellphone: Number,
+     email: String,
+     id: number
 }
 
 export default function Corrector({owner}: {owner: correctorInterface}){
@@ -28,13 +29,13 @@ export default function Corrector({owner}: {owner: correctorInterface}){
                             Corrector
                         </Text>
                         <Text color="black" fontSize="xl">
-                            {owner.nome}
+                            {owner.name}
                         </Text>
                 </VStack>
 
                 <HStack mt={3} alignContent="flex-start" justifyContent="space-between">
 
-                    <Pressable borderRadius="20" rounded="xl" bg="primary.600" alignSelf="flex-start" py="1" px="3" onPress={()=>Linking.openURL(`tel:${owner.telefone}`)}>
+                    <Pressable borderRadius="20" rounded="xl" bg="primary.600" alignSelf="flex-start" py="1" px="3" onPress={()=>Linking.openURL(`tel:${owner.cellphone}`)}>
                          <Icon color="white" as={Ionicons} name="call" size={25} />
                     </Pressable>
 
@@ -42,7 +43,7 @@ export default function Corrector({owner}: {owner: correctorInterface}){
                         <Icon color="white" as={Ionicons} name="mail" size={25} />
                     </Pressable>
 
-                    <Pressable borderRadius="20" rounded="xl" bg="success.600" alignSelf="flex-start" py="1" px="3" mr={3} onPress={()=>Linking.openURL(`whatsapp://send?text=${msg}&phone=${owner.telefone}`)}>
+                    <Pressable borderRadius="20" rounded="xl" bg="success.600" alignSelf="flex-start" py="1" px="3" mr={3} onPress={()=>Linking.openURL(`whatsapp://send?text=${msg}&phone=${owner.cellphone}`)}>
                         <Icon color="white" as={Ionicons} name="logo-whatsapp" size={25} />
                     </Pressable>
 

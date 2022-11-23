@@ -5,7 +5,8 @@ import { cos } from "react-native-reanimated";
 
 
 export class RealState {
-
+    
+    url ='http://192.168.133.187:8000/api/realstate/all';
 
     getAll = async () =>{
 
