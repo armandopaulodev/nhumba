@@ -6,4 +6,6 @@
 expo init my-app --template @native-base/expo-template-typescript
 ```
 
-![alt image1](/app/screenshot/1.jpg) ![alt image2](/app/screenshot/2.jpg)
+<!-- ![alt image1](/app/screenshot/1.jpg) ![alt image2](/app/screenshot/2.jpg) -->
+
+<img src="/app/screenshot/1.jpg" width="50">
