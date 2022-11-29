@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import {
+  useEffect,
+  useState,
+} from 'react';
 
 import { Formik } from 'formik';
 import {
-  Box,
+  Box,Fab,
   Button,
   Center,
   FormControl,
@@ -15,25 +18,39 @@ import {
   NativeBaseProvider,
   Text,
   VStack,
+  Container,
+  Pressable,
+  FlatList,
+  Spacer,
 } from 'native-base';
 import {
   Alert,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
+
 import { AuthService } from '../../shared/services/AuthService';
+import React from 'react';
+import { AntDesign } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-export default function Perfil(){
+export default function Perfil({navigation}: {navigation: any}){
 
 const[user, setUser] =useState("");
+const[list, setList]=useState([]);
 let auth = new AuthService;
   
 
 useEffect(()=>{
+ 
+    AsyncStorage.getItem('mystates').then((res:any)=>{
+    let data = JSON.parse(res);
+    setList(data);
+    });
+
     auth.getUser().then((name)=>{
         if(name!=null){
           setUser(name);
@@ -49,7 +66,14 @@ const login = async(user: any)=>{
 
       setUser(name);
 
+      AsyncStorage.getItem('mystates').then((res:any)=>{
+            let data = JSON.parse(res);
+            setList(data);
+      });
+
      });
+
+
 
 
 
@@ -164,35 +188,104 @@ return (
                                             </Box>
                                         </Center>
                                             : 
-                                            <Center w="100%">
-                                            <Box safeArea p="2" py="8" w="90%" maxW="290">
-                            
-                                              <Box alignItems="center">
-                                              <Image source={{
-                                                    uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
-                                                    }} alt='logo' height="100" rounded="full" width="100" />
-                                              <Text fontWeight="bold" fontSize="md" mt={1}>{user}</Text>
-                                              </Box>
                                            
-                                              <VStack space={4} alignItems="center">
-                                                    <Box shadow="9"  width="full" height={5}><Text>Privacidade</Text></Box>
-                                              </VStack>
-                                              
-                            
+                                          <Box>
                                           
+                                          <Box bg="warning.100" py="4" px="3" borderRadius="5" rounded="md"  pt={10} mt={2} width="full">
+                                            <HStack >
+                                                
+                                                <TouchableOpacity onPress={() => logout()}>
+                                                    <Image source={{
+                                                  uri: 'https://media.vanityfair.com/photos/5ba12e6d42b9d16f4545aa19/3:2/w_1998,h_1332,c_limit/t-Avatar-The-Last-Airbender-Live-Action.jpg'
+                                                  }} alt='logo' height="60" rounded="full" width="60" />
+                                                </TouchableOpacity>
+                                                
+                                    
+                                                <Box ml={5}>
+                                                    <VStack >
+                                                            <Text color="black" fontSize="xl">
+                                                                {user}
+                                                            </Text>
+                                                    </VStack>
+                                    
+                                                    <HStack mt={3} alignContent="flex-start" justifyContent="space-between">
+                                    
+                                              
+                                    
+                                                    </HStack>
+                                                   
+                                                </Box>
+                                            </HStack>
                                             </Box>
 
-                                            {/* Exit */}
-                                            <Icon   as={Ionicons} 
-                                            name="exit-outline"  
-                                            size={6} style={{ position: 'absolute', top: 38, right: 10 }}
-                                            onPress={()=>logout()}
-                                            >   
-                                           </Icon>
+                                            <Text ml={2} mb={3}>Meus Imoveis</Text>
+                                          <FlatList
+                                            data={list}
+                                            renderItem={({ item }) => 
+                                            <Box bg="gray.50" shadow={1} borderRadius="5" rounded="xl"   mb={2} width="full">
+                                            <TouchableOpacity >
+                                                <Box  py="2" px="2">
+                                                    <HStack >
+                                                        
+                                                        <Image source={{
+                                                        uri: item.uri
+                                                        }} alt='logo' height="60" rounded="full" width="60" />
+                              
+                                                        <Box ml={5}>
+                                                            <VStack >
+                                                                    <Text fontSize="sm" color="warning.400">
+                                                                       {item.wood} <Spacer/> {item.price} <Spacer/> {item.currence}
+                                                                    </Text>
+                                                                    <Text color="black" fontSize="md">
+                                                                        {item.city} <Spacer/> <Spacer/>Quartos: {item.rooms} <Spacer/> Banhos: {item.badrooms}
+                                                                    </Text>
+                                                            </VStack>
+                                                            
+                                                            <Text textAlign="justify">
+                                                            <Icon color="dark.200" as={Ionicons} name="mail" size={4} />
+                                                              {item.utility}
+                                                            </Text>
+
+                                                            <Text>
+                
+                                                            <Icon color="dark.200" as={Ionicons} name="trash" color="red.300" size={4} />
+                                                            </Text>
+                                                        </Box>
+                                                    
+                                                    </HStack>
+                                                </Box>
+                                            </TouchableOpacity>
+                                          </Box>
+                                             }
+                                            keyExtractor={(item) => item.id}
+                                           />
+
+                                         
+          
+          
+                                          <Box position="relative" h={100} w="100%">
+                                            <Fab position="absolute" onPress={() => { navigation.navigate('create'); } } size="lg" icon={<Icon color="white" as={<AntDesign name="plus" />} size="sm" />} />
+                                          </Box>
+
+                                        
+                                        
+                                      
+                                      </Box>
+                                          
+                                       
+                                        
+
+
+
+                        
+
+                  
+                  
+                        
 
                                        
 
-                                        </Center>
+                                         
 
                                        
                                            

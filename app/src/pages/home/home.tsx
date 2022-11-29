@@ -1,26 +1,38 @@
-import React,{useEffect} from "react";
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Divider,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,StatusBar,Icon,Select,CheckIcon,
-  extendTheme,
-  Stack,AspectRatio, ScrollView,Flex,
-  Box, Image, Toast, FlatList, Spacer, View, VStack, Actionsheet, useDisclose,
-} from "native-base";
+import React, { useEffect } from 'react';
 
-import { MaterialIcons, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { Alert, TouchableOpacity, Dimensions } from 'react-native';
-import LocalDataBase from "../../../database/localDatabase";
 import GridFlatList from 'grid-flatlist-react-native';
-import { RealState } from "../../shared/services/RealStateService";
+import {
+  Actionsheet,
+  AspectRatio,
+  Box,
+  Center,
+  CheckIcon,
+  extendTheme,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Image,
+  NativeBaseProvider,
+  Select,
+  Spacer,
+  Stack,
+  Switch,
+  Text,
+  useColorMode,
+  useDisclose,
+  useToast,
+  VStack,
+} from 'native-base';
+import {
+  Dimensions,
+  TouchableOpacity,RefreshControl
+} from 'react-native';
 
+import { Ionicons } from '@expo/vector-icons';
 
+import LocalDataBase from '../../../database/localDatabase';
+import { RealState } from '../../shared/services/RealStateService';
 
 // Define the config
 const config = {
@@ -41,6 +53,8 @@ export default function Home({navigation}: {navigation: any}) {
   const {width, height} = Dimensions.get('screen');
   const [service, setService] = React.useState("");
   const [list, setList] = React.useState([]);
+  const [refresh, setRefresh]=React.useState(false);
+  const toast = useToast();
   let realstate = new RealState;
 
  
@@ -50,6 +64,7 @@ export default function Home({navigation}: {navigation: any}) {
 
   const fecthRealstate = () =>{
 
+    setRefresh(true);
     fetch(realstate.url,{
      method: "GET",
      headers: {
@@ -58,10 +73,11 @@ export default function Home({navigation}: {navigation: any}) {
     }).then(res=>{
         return   res.json();
     }).then(res=>{
-
         let data = res.data;
         setList(data);
-        console.log(res.data);
+        setRefresh(false);
+    }).catch(error=>{
+        console.log(error);
     })
 
 }  
@@ -129,7 +145,13 @@ export default function Home({navigation}: {navigation: any}) {
                         }
                         />   */}
 
-                      <GridFlatList data={list} keyExtractor={(item) => item.id}
+                      <GridFlatList data={list} keyExtractor={(item) => item.id} refreshControl={
+                            <RefreshControl 
+                             refreshing={refresh}
+                             onRefresh={fecthRealstate}
+                             
+                            />
+                         }
                          renderItem={(item: any) => <Box alignItems="center" mb={2}>
                         <Box maxW="full" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
                             borderColor: "coolGray.600",

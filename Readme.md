@@ -5,3 +5,5 @@
 ```sh
 expo init my-app --template @native-base/expo-template-typescript
 ```
+
+![alt text](/app/screenshot/1.jpg);

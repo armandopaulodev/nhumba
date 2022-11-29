@@ -13,7 +13,7 @@ export interface correctorInterface {
 
 export default function Corrector({owner}: {owner: correctorInterface}){
 
-    const msg = "Ola estou interresado em um dos seus imoveis";
+    const msg = "Ola estou interresado em um dos seus imoveis"; 
 
     return (
         <Box bg="warning.100" py="4" px="3" borderRadius="5" rounded="md" mt={2} width={375} maxWidth="100%">
@@ -51,6 +51,6 @@ export default function Corrector({owner}: {owner: correctorInterface}){
                 <Text textAlign="justify" mt={5}>Ver Perfil completo</Text>
             </Box>
         </HStack>
-     </Box>
+        </Box>
     )
 }

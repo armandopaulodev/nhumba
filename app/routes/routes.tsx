@@ -8,6 +8,7 @@ import Perfil from '../src/pages/perfil/perfil';
 import { createStackNavigator } from '@react-navigation/stack';
 import Details from '../src/pages/details/details';
 import Teste from '../src/shared/test/teste';
+import Create from '../src/pages/realstate/create';
 
 
 
@@ -20,6 +21,7 @@ const Stack = createStackNavigator();
              <Stack.Navigator>
              <Stack.Screen name="inicio" component={TabsNavigation} options={ {headerShown: false}}/>
               <Stack.Screen name="Details" component={Details} options={ {headerShown: false}} />
+              <Stack.Screen name="create" component={Create} options={ {headerShown: true, title:"Criar imovel"}} />
             </Stack.Navigator>
     </NavigationContainer>
   );

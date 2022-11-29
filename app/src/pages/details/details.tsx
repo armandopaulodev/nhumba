@@ -104,7 +104,7 @@ export default function Details({navigation, route}) {
                                             <Spacer />
                                             <Text fontSize={15} color="coolGray.800">
                                              {currence} <Spacer/>
-                                             {price.toFixed(2)} 
+                                             {price} 
                                             </Text>
                                         </HStack>
                                         <Text color="coolGray.800" mt="3" fontWeight="medium" fontSize="xl">
@@ -122,7 +122,7 @@ export default function Details({navigation, route}) {
                                             <Text mt="2" fontSize={18} fontWeight="medium" color="darkBlue.600">
                                             <Icon   as={Ionicons} 
                                                 name="location" color="black" size={26} 
-                                                onPress={()=>navigation.goBack()}>   
+                                                >   
                                             </Icon>
                                               Localização
                                             </Text>
@@ -131,7 +131,7 @@ export default function Details({navigation, route}) {
                                                 <Text>
                                                     <Icon   as={Ionicons} 
                                                         name="home" color="black" size={4} 
-                                                        onPress={()=>navigation.goBack()}>   
+                                                        >   
                                                     </Icon>
                                                     <Spacer/> <Spacer/>
                                                     {adress},
@@ -144,21 +144,23 @@ export default function Details({navigation, route}) {
                                         </Flex>
 
 
-                                        {/* house mapa */}
+                                     
 
-                                        {/* <MapView style={{  height: height }} 
-                                        scrollDuringRotateOrZoomEnabled={true} 
-                                        zoomEnabled showsMyLocationButton={true} /> */}
-
-                                        {/* correcto */}
+                                        {/* corrector */}
 
                                         <Corrector owner={realtor}/>
 
                                 </Box>
-                          
-                              
+                                
+
+                                <MapView style={{  height: height }} 
+                                scrollDuringRotateOrZoomEnabled={false} 
+                                showsMyLocationButton={true}/> 
 
                             </BottomSheetScrollView>
+                             
+
+                                        
                             
                         </BottomSheet>
                         

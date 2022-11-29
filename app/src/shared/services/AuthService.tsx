@@ -1,6 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import { Alert } from 'react-native';
 
 export interface user {
       email: String,
@@ -14,16 +12,32 @@ unsername ='';
 
 login = async(user: user) => {
 
-                await axios.post('http://192.168.133.187:8000/api/user/login',
+                await fetch('http://192.168.133.187:8000/api/user/login',
                 {
-                'email': "armandopaulo@netware.co.mz",
-                'password': 12345678
+                  method: 'POST',
+                  headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body : JSON.stringify({
+                    'email': user.email,
+                     'password':user.password
+                  }),
+                 
                 }
-                ).then((res)=>{
-                  this.unsername=res.data['user'].name;
-                  AsyncStorage.setItem('user',JSON.stringify(res.data['user'])); //criando o usuario local
-                }).catch(error=>console.log(error));
+                ).then(res=>{
+                    return res.json();
+                }).then(res=>{
+                           
+                           this.unsername = res.user.name;
+                           AsyncStorage.setItem('user',JSON.stringify(res.user));//criando o usuario local
+                           AsyncStorage.setItem('token',JSON.stringify(res.token));
+                           AsyncStorage.setItem('mystates',JSON.stringify(res.realstates));
+                }).catch(error=>{
+                  console.log(error)
+                })
 
+        
 
                 return this.unsername;
 
@@ -33,6 +47,7 @@ login = async(user: user) => {
   logout = async () => {
 
        await AsyncStorage.removeItem('user');
+       await AsyncStorage.removeItem('token');
 
   }
 
@@ -52,6 +67,10 @@ getUser = async() =>{
 
   return this.unsername;
 }
+
+
+
+
 
 
 }

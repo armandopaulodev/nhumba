@@ -14,7 +14,7 @@ const ListItem = ({ data }) => {
                       <HStack >
                           
                           <Image source={{
-                          uri: data.avatar 
+                          uri: data.uri 
                           }} alt='logo' height="60" rounded="full" width="60" />
 
                           <Box ml={5}>
@@ -29,7 +29,13 @@ const ListItem = ({ data }) => {
                               
                               <Text textAlign="justify">
                               <Icon color="dark.200" as={Ionicons} name="mail" size={4} />
-                                {data.email}
+                                {data.email} 
+                              </Text>
+
+                              <Text textAlign="justify">
+                                <Spacer/> 
+                                <Icon color="dark.200" as={Ionicons} name="call" size={4} />
+                                {data.cellphone} 
                               </Text>
                           </Box>
                       

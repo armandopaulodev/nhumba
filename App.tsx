@@ -4,14 +4,7 @@ import MyStack from './app/routes/routes';
 import { RealState } from './app/src/shared/services/RealStateService';
 import  {useEffect} from "react"
 export default function App() {
-  let realstate = new RealState;
-
-  useEffect(() => {
-
-   realstate.getAll();
-
-   });
-
+  
   return (
       <MyStack/>
   );
